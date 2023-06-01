@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{{ app_name }} {{ app_version }}</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock stylesheets %}
+
+    {% block add_stylesheets %}{% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock javascripts %}
+
+</head>
+<body class="sb-nav-fixed">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
+    <div class="container-fluid">
+        <button class="navbar-toggler btn-hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""><i class="bi bi-list"></i></span>
+        </button>
+
+{#        <a class="navbar-brand" href="#"><i class="bi bi-bootstrap-fill"></i></a>#}
+
+        <div class="collapse navbar-collapse" id="navbarsExample07XL">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('admin') }}">admin {{ app_name }}</a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#">Link</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link disabled">Disabled</a>#}
+{#                </li>#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>#}
+{#                    <ul class="dropdown-menu">#}
+{#                        <li><a class="dropdown-item" href="#">Action</a></li>#}
+{#                        <li><a class="dropdown-item" href="#">Another action</a></li>#}
+{#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+            </ul>
+        </div>
+
+        <a class="btn btn-outline-secondary dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person"></i> {{ app.user.username }}</a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ path('admin_profile_current_show') }}">{{ 'app.profile'|trans }}</a></li>
+            <li><a class="dropdown-item" href="{{ path('admin_inbox') }}">{{ 'navbar.activity'|trans  }}</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{{ path('logout')}}">{{ 'navbar.logout'|trans  }}</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav nav-pills d-flex flex-column mb-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo == '/admin' %}active{% endif %}" aria-current="page" href="{{ path('admin')}}">
+                            <i class="bi bi-speedometer"></i>
+                            {{ 'menu.dashboard'|trans }}
+{#                            {% if incoming_unread_count is defined %}#}
+{#                                <span class="badge bg-secondary">+{{ incoming_unread_count }}</span>#}
+{#                            {% endif %}#}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/order' %}active{% endif %}" href="{{ path('admin_order_index')}}">
+                            <i class="bi bi-egg-fried"></i>
+                            {{ 'menu.orders'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/card' %}active{% endif %}" href="{{ path('admin_card_index')}}">
+                            <i class="bi bi-card-heading"></i>
+                            {{ 'menu.cards'|trans }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/product' %}active{% endif %}" href="{{ path('admin_product_index')}}">
+                            <i class="bi bi-box"></i>
+                            {{ 'menu.products'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/check' %}active{% endif %}" href="{{ path('admin_check_index')}}">
+                            <i class="bi bi-clipboard-check"></i>
+                            {{ 'menu.checks'|trans }}
+                        </a>
+                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/profile' %}active{% endif %}" href="{{ path('admin_profile_index')}}">#}
+{#                            <i class="bi bi-people-fill"></i>#}
+{#                            {{ 'menu.profiles'|trans }}#}
+{#                            {% if app.flashes('profile')|length %}<span class="badge bg-secondary">+{{ app.flashes('profile')|length }}</span>{% endif %}#}
+{#                        </a>#}
+{#                    </li>#}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/topic' %}active{% endif %}" href="{{ path('admin_topic_index')}}">
+                            <i class="bi bi-list-task"></i>
+                            {{ 'menu.topics'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/project' %}active{% endif %}" href="{{ path('admin_project_index')}}">
+                            <i class="bi bi-kanban-fill"></i>
+                            {{ 'menu.projects'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/invite' %}active{% endif %}" href="{{ path('admin_invite_index')}}">
+                            <i class="bi bi-node-plus-fill"></i>
+                            {{ 'menu.invites'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/offer' %}active{% endif %}" href="{{ path('admin_offer_index')}}">
+                            <i class="bi bi-clipboard2"></i>
+                            {{ 'menu.offer'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/user' %}active{% endif %}" href="{{ path('admin_user_index')}}">
+                            <i class="bi bi-people-fill"></i>
+                            {{ 'menu.users'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/market' %}active{% endif %}" href="{{ path('admin_market_default')}}">
+                            <i class="bi bi-cart"></i>
+                            {{ 'menu.market'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/integration' %}active{% endif %}" href="{{ path('admin_integration_index')}}">
+                            <i class="bi bi-app"></i>
+                            {{ 'menu.integrations'|trans }}
+                        </a>
+                    </li>
+
+
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ path('admin')}}">#}
+{#                            <i class="bi bi-gear"></i>#}
+{#                            {{ 'menu.settings'|trans }}#}
+{#                        </a>#}
+{#                    </li>#}
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pb-4">
+
+            {% block page_title %}
+                <h1 class="mt-4">{{ app_version }}</h1>
+            {%endblock%}
+
+            {% block breadcrumb %}
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="{{ path('admin') }}">index</a></li>
+                    {% block add_breadscrumb %}{% endblock %}
+                    {% block current_breadscrumb %}
+                    <li class="breadcrumb-item active">/</li>
+                    {% endblock %}
+                    {% block next_breadscrumb %}{% endblock %}
+                </ol>
+            {% endblock %}
+
+            {% block action_panel %}
+            {% endblock %}
+
+            {% for label, messages in app.flashes(['success', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message|trans }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'button.close'|trans }}"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            {% block filters %}
+            {% endblock %}
+
+            {% block main %}
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="card-header">
+                                Featured
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ 'app.orders'|trans }}</h5>
+                                <p class="card-text">New orders: {{ 0 }}</p>
+                                <a href="{{ path('admin_order_index') }}" class="btn btn-primary">{{ 'button.show'|trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block paginator %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+</div>
+
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">{{ app_version }}</div>
+            <div>
+                <a href="#">{{ 'link.privacy' }}</a>
+                &middot;
+                <a href="#">{{ 'link.terms_conditions' }}</a>
+            </div>
+        </div>
+    </div>
+</footer>
+{% block add_javascript %}{%endblock%}
+</body>
+</html>
