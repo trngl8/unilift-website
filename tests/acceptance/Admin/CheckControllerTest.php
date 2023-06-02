@@ -1,11 +1,11 @@
 <?php
 
-namespace acceptance\Controller\Admin;
+namespace App\Tests\Acceptance\Admin;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CardControllerTest extends WebTestCase
+class CheckControllerTest extends WebTestCase
 {
 
     public function testAdminSuccess(): void
@@ -17,9 +17,9 @@ class CardControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/card');
+        $client->request('GET', '/admin/check');
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Items');
+        $this->assertSelectorTextContains('h1', 'Checks');
 
     }
 
@@ -33,47 +33,29 @@ class CardControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/card/add');
+        $client->request('GET', '/admin/check/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/card/add');
+        $client->request('GET', '/admin/check/add');
 
         $crawler = $client->submitForm('Submit', [
-            'card_admin[title]' => 'test',
-            'card_admin[code]' => 12,
+            'check[title]' => 'test',
+            'check[description]' => 'about item',
+            'check[type]' => 'open',
         ]);
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/card/2/edit');
-
-        $this->assertResponseStatusCodeSame(404);
-
-        $client->request('GET', '/admin/card/1/edit');
+        $client->request('GET', '/admin/check/edit/1');
 
         $client->submitForm('Submit', [
-            'card_admin[title]' => 'new name',
-            'card_admin[code]' => 34,
+            'check[title]' => 'new name',
+            'check[description]' => 'about item',
+            'check[type]' => 'single',
         ]);
 
         $this->assertResponseIsSuccessful();
-
-        $client->request('GET', '/admin/card/1/show');
-
-        $this->assertResponseIsSuccessful();
-
-        $client->request('GET', '/admin/card/1/remove');
-
-        $this->assertResponseIsSuccessful();
-
-        $client->submitForm('Yes');
-
-        $this->assertResponseIsSuccessful();
-
-        $client->request('GET', '/admin/card/1/show');
-
-        $this->assertResponseStatusCodeSame(404);
     }
 
     public function testSubmitFail(): void
@@ -86,15 +68,16 @@ class CardControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/card/add');
+        $client->request('GET', '/admin/check/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/card/add');
+        $client->request('GET', '/admin/check/add');
 
         $crawler = $client->submitForm('Submit', [
-            'card_admin[title]' => null,
-            'card_admin[code]' => null,
+            'check[title]' => null,
+            'check[description]' => 'about item',
+            'check[type]' => 'single',
         ]);
 
         $this->assertResponseIsSuccessful();

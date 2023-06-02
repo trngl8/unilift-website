@@ -1,11 +1,11 @@
 <?php
 
-namespace acceptance\Controller\Admin;
+namespace App\Tests\Acceptance\Admin;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class InviteControllerTest extends WebTestCase
+class CardControllerTest extends WebTestCase
 {
 
     public function testAdminSuccess(): void
@@ -17,9 +17,9 @@ class InviteControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/invite');
+        $client->request('GET', '/admin/card');
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Invites');
+        $this->assertSelectorTextContains('h1', 'Items');
 
     }
 
@@ -33,35 +33,37 @@ class InviteControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/invite/add');
+        $client->request('GET', '/admin/card/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/invite/add');
+        $client->request('GET', '/admin/card/add');
 
         $crawler = $client->submitForm('Submit', [
-            'invite_admin[name]' => 'test',
-            'invite_admin[email]' => 'test@test.com',
-            'invite_admin[description]' => 'set other description',
+            'card_admin[title]' => 'test',
+            'card_admin[code]' => 12,
         ]);
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/invite/show/1');
+        $client->request('GET', '/admin/card/2/edit');
 
-        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(404);
 
-        $client->request('GET', '/admin/invite/edit/1');
+        $client->request('GET', '/admin/card/1/edit');
 
         $client->submitForm('Submit', [
-            'invite_admin[name]' => 'new name',
-            'invite_admin[email]' => 'test2@test.com',
-            'invite_admin[description]' =>  'set another description',
+            'card_admin[title]' => 'new name',
+            'card_admin[code]' => 34,
         ]);
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/invite/remove/1');
+        $client->request('GET', '/admin/card/1/show');
+
+        $this->assertResponseIsSuccessful();
+
+        $client->request('GET', '/admin/card/1/remove');
 
         $this->assertResponseIsSuccessful();
 
@@ -69,7 +71,7 @@ class InviteControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/invite/show/1');
+        $client->request('GET', '/admin/card/1/show');
 
         $this->assertResponseStatusCodeSame(404);
     }
@@ -84,16 +86,15 @@ class InviteControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/invite/add');
+        $client->request('GET', '/admin/card/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/invite/add');
+        $client->request('GET', '/admin/card/add');
 
-        //TODO: valid node for the form submit
         $crawler = $client->submitForm('Submit', [
-            'invite_admin[name]' => null,
-            'invite_admin[email]' => null,
+            'card_admin[title]' => null,
+            'card_admin[code]' => null,
         ]);
 
         $this->assertResponseIsSuccessful();

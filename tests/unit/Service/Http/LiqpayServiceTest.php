@@ -1,6 +1,6 @@
 <?php
 
-namespace integration\Service;
+namespace App\Tests\Unit\Service\Http;
 
 use App\Service\LiqpayService;
 use App\Service\Payment\LiqPayAPI;

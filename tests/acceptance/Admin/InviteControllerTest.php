@@ -1,11 +1,11 @@
 <?php
 
-namespace acceptance\Controller\Admin;
+namespace App\Tests\Acceptance\Admin;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CheckControllerTest extends WebTestCase
+class InviteControllerTest extends WebTestCase
 {
 
     public function testAdminSuccess(): void
@@ -17,9 +17,9 @@ class CheckControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/check');
+        $client->request('GET', '/admin/invite');
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Checks');
+        $this->assertSelectorTextContains('h1', 'Invites');
 
     }
 
@@ -33,29 +33,45 @@ class CheckControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/check/add');
+        $client->request('GET', '/admin/invite/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/check/add');
+        $client->request('GET', '/admin/invite/add');
 
         $crawler = $client->submitForm('Submit', [
-            'check[title]' => 'test',
-            'check[description]' => 'about item',
-            'check[type]' => 'open',
+            'invite_admin[name]' => 'test',
+            'invite_admin[email]' => 'test@test.com',
+            'invite_admin[description]' => 'set other description',
         ]);
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/check/edit/1');
+        $client->request('GET', '/admin/invite/show/1');
+
+        $this->assertResponseIsSuccessful();
+
+        $client->request('GET', '/admin/invite/edit/1');
 
         $client->submitForm('Submit', [
-            'check[title]' => 'new name',
-            'check[description]' => 'about item',
-            'check[type]' => 'single',
+            'invite_admin[name]' => 'new name',
+            'invite_admin[email]' => 'test2@test.com',
+            'invite_admin[description]' =>  'set another description',
         ]);
 
         $this->assertResponseIsSuccessful();
+
+        $client->request('GET', '/admin/invite/remove/1');
+
+        $this->assertResponseIsSuccessful();
+
+        $client->submitForm('Yes');
+
+        $this->assertResponseIsSuccessful();
+
+        $client->request('GET', '/admin/invite/show/1');
+
+        $this->assertResponseStatusCodeSame(404);
     }
 
     public function testSubmitFail(): void
@@ -68,16 +84,16 @@ class CheckControllerTest extends WebTestCase
 
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/check/add');
+        $client->request('GET', '/admin/invite/add');
 
         $this->assertResponseIsSuccessful();
 
-        $client->request('GET', '/admin/check/add');
+        $client->request('GET', '/admin/invite/add');
 
+        //TODO: valid node for the form submit
         $crawler = $client->submitForm('Submit', [
-            'check[title]' => null,
-            'check[description]' => 'about item',
-            'check[type]' => 'single',
+            'invite_admin[name]' => null,
+            'invite_admin[email]' => null,
         ]);
 
         $this->assertResponseIsSuccessful();

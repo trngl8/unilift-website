@@ -1,22 +1,24 @@
 <?php
 
-namespace acceptance\Controller\Admin;
+namespace App\Tests\Acceptance\Admin;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdminUserControllerTest extends WebTestCase
+class IntegrationControllerTest extends WebTestCase
 {
-    public function testAdminSuccess(): void
+    public function testIntegrationSuccess(): void
     {
         $client = static::createClient();
 
         $userRepository = static::getContainer()->get(UserRepository::class);
         $testUser = $userRepository->findOneByUsername('admin@test.com');
-
         $client->loginUser($testUser);
 
-        $client->request('GET', '/admin/user');
+        $client->request('GET', '/admin/integration');
+        $client->followRedirects();
+
         $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Integration');
     }
 }
