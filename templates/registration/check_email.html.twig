@@ -1,6 +1,6 @@
 {% extends 'default.html.twig' %}
 
-{% block title %}Check verification email{% endblock %}
+{% block title %}{{ 'title.check_email'|trans }}{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -16,14 +16,17 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="mb-4">Check email</h1>
+    <h1 class="mb-4">{{ 'title.check_email'|trans }}</h1>
 
     <div class="row">
         <div class="col-md-6">
             <p>
-                An email was just sent that contains a link that you can use to verify your account.
+                {{ 'messages.verification.email_sent'|trans }}
             </p>
-            <p>If you don't receive an email please check your spam folder.</p>
+            <p>
+                {{ 'messages.verification.check_spam'|trans }}
+            </p>
+            <a href="{{ path('app_home') }}">{{ 'link.to_home'|trans }}</a>
         </div>
     </div>
 

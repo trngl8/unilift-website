@@ -1,11 +1,14 @@
-<h1>Hi! Please confirm your email!</h1>
+<style>
+    {# here, define your CSS styles as usual #}
+</style>
+<h3>{{ 'email.confirm.title'|trans }}</h3>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    {{ 'email.confirm.text'|trans }}: <br><br>
+    <a href="{{ signedUrl|raw }}">{{ 'email.confirm.link'|trans }}</a>.
+    {{ 'email.confirm.link_expire'|trans }} {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
 </p>
 
 <p>
-    Cheers!
+    {{ 'email.confirm.cheers'|trans }}
 </p>

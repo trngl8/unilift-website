@@ -39,6 +39,9 @@ messages:
   closing_agree: "Closing agree"
   change_agree: "Change agree"
   blank: "This page is blank"
+  verification:
+    email_sent: Електронний лист з лінком для підтвердження щойно був надісланий на вашу електронну пошту.
+    check_spam: Якщо ви не отримали листа, перевірте папку "спам".
 
 error:
   text_return_homepage: "Return to homepage"
@@ -92,3 +95,15 @@ title:
   home: Головна
   register: Реєстрація
   login: Вхід
+  check_email: Перевірте електронну пошту
+
+link:
+  to_home: На головну
+
+email:
+  confirm:
+    title: Підтвердження електронної пошти
+    text: Будь ласка, підтвердіть електронну пошту, натиснувши лінк нижче.
+    link: Підтвердити електронну пошту
+    link_expire: Цей лінк буде дійсний протягом
+    cheers: Дякуємо
