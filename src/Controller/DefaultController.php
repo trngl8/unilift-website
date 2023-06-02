@@ -37,11 +37,7 @@ class DefaultController
 
     public function default(Request $request) : Response
     {
-        //TODO: check current route
-//        if ($request->attributes->get('_route') === 'default' && $this->appTheme === 'default') {
-//        }
-
-        $templateName = sprintf('%s/default.html.twig', $this->appTheme);
+        $templateName = sprintf('default/default.html.twig');
 
         try {
             $template = $this->twig->load($templateName);
@@ -61,8 +57,8 @@ class DefaultController
         }
 
         //TODO: check routes exists
-        $button1 = new LinkToRoute('login', 'button.more', 'primary', 'bi bi-1-circle');
-        $button2 = new LinkToRoute($this->defaultModule, 'button.subscribe', 'outline-primary', 'bi bi-2-square');
+        $button1 = new LinkToRoute('app_register', 'button.register', 'primary', 'bi bi-1-circle');
+        $button2 = new LinkToRoute('app_login', 'button.login', 'outline-primary', 'bi bi-2-square');
 
         $products = $this->productRepository->findBy([], ['id' => 'ASC'], 3, 0);
 

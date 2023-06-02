@@ -92,6 +92,7 @@ link:
 type: Type
 total: Total
 title:
+  home: Home
   register: Register
   verify: Verify
   topics: Topics

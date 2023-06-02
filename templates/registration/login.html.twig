@@ -1,0 +1,52 @@
+{% extends 'default.html.twig' %}
+
+{% block title %}{{ 'title.login'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ 'title.login'|trans }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block main %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1 class="mb-4">{{ 'title.login'|trans }}</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form method="post" action="{{ path('app_login') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="mb-3">
+                    <label for="username" class="form-label">{{ 'form.label.email'|trans }}</label>
+                    <input type="email" class="form-control" id="username" name="_username" value="{% if last_username is defined %}{{ last_username }}{% endif %}" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">{{ 'form.label.password'|trans }}</label>
+                    <input type="password" id="password" name="_password" class="form-control">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember" name="_remember_me">
+                    <label class="form-check-label" for="remember">{{ 'form.label.remember_me'|trans }}</label>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary">{{ 'button.login'|trans }}</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -9,9 +9,13 @@ update:
 	yarn upgrade
 .PHONY: update
 
-deploy:
-	echo "TODO: create deploy process"
-.PHONY: deploy
+deploy-develop:
+	php vendor/bin/dep deploy --branch=develop
+.PHONY: deploy-develop
+
+deploy-main:
+	php vendor/bin/dep deploy --branch=main
+.PHONY: deploy-main
 
 tests:
 	php bin/console doctrine:database:drop --env=test --force

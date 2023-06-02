@@ -54,14 +54,16 @@ flash:
 
 form:
   label:
-    remember_me: Remember me
-    password: Password
-    email: Email
-    name: Name
-    locale: Locale
-    agree: Agree
-    know: Know
-    submit: Submit
+    remember_me: Запам'ятати мене
+    password: Пароль
+    email: Електронна пошта
+    name: Ім'я
+    locale: Мова
+    agree: Погоджуюсь
+    know: Знаю
+    submit: Відправити
+    repeat_password: Повторіть пароль
+    agree_terms: Погоджуюсь з умовами
 
 # button should have a context (e.g. button: {save: Save, cancel: Cancel})
 button:
@@ -85,3 +87,8 @@ button:
   add: Додати
   register: Реєстрація
   clone: Клонувати
+
+title:
+  home: Головна
+  register: Реєстрація
+  login: Вхід
