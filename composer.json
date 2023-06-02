@@ -78,6 +78,9 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "tests-unit": [
+            "php vendor/bin/phpunit tests/unit"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],

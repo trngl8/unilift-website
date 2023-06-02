@@ -43,6 +43,7 @@ class ProductControllerTest extends WebTestCase
         $crawler = $client->submitForm('Submit', [
             'product_admin[title]' => 'test',
             'product_admin[description]' => 'set other description',
+            'product_admin[fees]' => 2,
         ]);
 
         $this->assertResponseIsSuccessful();
@@ -52,7 +53,7 @@ class ProductControllerTest extends WebTestCase
         $client->submitForm('Submit', [
             'product_admin[title]' => 'test',
             'product_admin[description]' => 'set one more description',
-            'product_admin[fees]' => 1,
+            'product_admin[fees]' => 3,
         ]);
 
         $this->assertResponseIsSuccessful();
