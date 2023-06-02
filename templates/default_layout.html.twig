@@ -52,7 +52,7 @@
                             {% endif %}
                             <li><a class="dropdown-item" href="{{ path('app_profile_invites') }}">{{ 'app.invites'|trans }}</a></li>
                             <li><a class="dropdown-item" href="{{ path('app_order_index') }}">{{ 'app.orders'|trans }} {% if cart_items_count is defined %}<span class="badge text-bg-secondary">{{ cart_items_count }}{% endif %} </span></a></li>
-                            <li><a class="dropdown-item" href="{{ path('logout') }}">{{ 'app.logout'|trans }}</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a></li>
                         </ul>
                     </div>
                     {# <a class="btn btn-outline-primary" href="">Login</a>#}
