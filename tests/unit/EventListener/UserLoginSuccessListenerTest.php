@@ -7,6 +7,7 @@ use App\EventListener\UserLoginSuccessListener;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -46,18 +47,13 @@ class UserLoginSuccessListenerTest extends TestCase
 
         $this->dispatcher->dispatch($event, LoginSuccessEvent::class);
 
-        $this->assertInstanceOf(Response::class, $event->getResponse());
+        // TODO check correct response URL
+        $this->assertInstanceOf(RedirectResponse::class, $event->getResponse());
     }
 
     public function dataRedirects(): iterable
     {
         yield 'User' => ['ROLE_USER', 'app_index'];
         yield 'Admin' => ['ROLE_ADMIN', 'admin'];
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-        unset($this->dispatcher);
     }
 }
