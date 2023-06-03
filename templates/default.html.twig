@@ -61,9 +61,15 @@
                 <p class="lead" data-hello-target="output"></p>
                 {% if buttons is defined %}
                     <p class="lead">
-                        {% for button in buttons %}
-                            <a href="{{ path(button.getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ button.getCaption|trans }}">{{ button.getCaption|trans }}</a>
-                        {% endfor %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                       <a href="{{ path('app_profile') }}" class="btn btn-lg btn-outline-dark" title="{{ app.user.userIdentifier }}"><i class="bi bi-person-lock"></i></a>
+                    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
+                        <a href="{{ path('app_profile') }}" class="btn btn-lg btn-outline-dark" title="{{ app.user.userIdentifier }}"><i class="bi bi-person-lock"></i></a>
+                    {% endif %}
+
+                    {% for button in buttons %}
+                        <a href="{{ path(button.getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ button.getCaption|trans }}">{{ button.getCaption|trans }}</a>
+                    {% endfor %}
                     </p>
                 {% endif %}
             </main>
@@ -72,7 +78,7 @@
 
             <footer class="text-center mt-auto">
                 {% block footer %}
-                <p>Owners by <a href="https://unilift.com.ua">Unilift</a>.</p>
+                <p>{{ 'messages.licenced_by'|trans }} <a href="https://unilift.com.ua">Unilift</a>.</p>
                 {% endblock %}
             </footer>
 

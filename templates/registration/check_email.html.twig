@@ -16,16 +16,13 @@
 {% endblock %}
 
 {% block main %}
+
     <h1 class="mb-4">{{ 'title.check_email'|trans }}</h1>
 
     <div class="row">
-        <div class="col-md-6">
-            <p>
-                {{ 'messages.verification.email_sent'|trans }}
-            </p>
-            <p>
-                {{ 'messages.verification.check_spam'|trans }}
-            </p>
+        <div class="col-md-8">
+            <p>{{ 'messages.verification.email_sent'|trans }}</p>
+            <p>{{ 'messages.verification.check_spam'|trans }}</p>
             <a href="{{ path('app_home') }}">{{ 'link.to_home'|trans }}</a>
         </div>
     </div>

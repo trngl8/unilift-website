@@ -26,10 +26,20 @@
         </div>
     {% endif %}
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'messages.authenticated_as'|trans }}: <b>{{ app.user.email }}</b> <a href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a>
+        </div>
+    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="alert alert-secondary" role="alert">
+            {{ 'messages.authenticated_as'|trans }}: <b>{{ app.user.email }}</b> <a href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a>
+        </div>
+    {% endif %}
+
     <h1 class="mb-4">{{ 'title.login'|trans }}</h1>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
 
             <form method="post" action="{{ path('app_login') }}">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
