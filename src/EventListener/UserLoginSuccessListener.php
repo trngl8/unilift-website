@@ -23,12 +23,12 @@ class UserLoginSuccessListener
 
         $roles = $user->getRoles();
 
-        if(in_array("ROLE_ADMIN", $roles)) {
-            $event->setResponse(new RedirectResponse($this->router->generate('admin')));
-        }
-
         if(in_array("ROLE_USER", $roles)) {
             $event->setResponse(new RedirectResponse($this->router->generate('app_index'))); // TODO: maybe app_user?
+        }
+
+        if(in_array("ROLE_ADMIN", $roles)) {
+            $event->setResponse(new RedirectResponse($this->router->generate('admin')));
         }
     }
 }
