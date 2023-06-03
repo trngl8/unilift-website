@@ -36,7 +36,7 @@ class UserLoginSuccessListenerTest extends TestCase
         $request = $this->createMock(Request::class);
 
         $user = new User();
-        $user->setRoles([sprintf('ROLE_%s', $role)]);
+        $user->setRoles([$role]);
         $passport->method('getUser')->willReturn($user);
         $router->method('generate')->willReturn($route);
 
@@ -53,5 +53,11 @@ class UserLoginSuccessListenerTest extends TestCase
     {
         yield 'User' => ['ROLE_USER', 'app_index'];
         yield 'Admin' => ['ROLE_ADMIN', 'admin'];
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        unset($this->dispatcher);
     }
 }
