@@ -74,6 +74,11 @@ form:
     agree: Agree
     know: Know
     submit: Submit
+    repeat_password: Repeat password
+    agree_terms: Agree terms
+    new_password: New password
+  autocomplete:
+    new_password: New password
 
 # button should have a context (e.g. button: {save: Save, cancel: Cancel})
 button:
@@ -123,6 +128,7 @@ title:
   verify: Verify
   reset_password: Reset password
   password_reset_email_sent: Password reset email sent
+  new_password: New password
   topics: Topics
   topic_run: Topic run
   topic_remove: Topic remove

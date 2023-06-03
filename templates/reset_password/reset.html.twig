@@ -1,6 +1,6 @@
 {% extends 'default.html.twig' %} {# layout was the old template #}
 
-{% block title %}{{ 'messages.reset_password'|trans }}{% endblock %}
+{% block title %}{{ 'title.new_password'|trans }}{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -9,12 +9,16 @@
             <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
             <li class="breadcrumb-item"><a href="{{ path('app_login') }}">{{ 'title.login'|trans }}</a></li>
             <li class="breadcrumb-item"><a href="{{ path('app_forgot_password_request') }}">{{ 'title.reset_password'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ 'title.new_password'|trans }}</li>
         </ol>
     </nav>
 {% endblock %}
 
+{% block footer %}
+{% endblock %}
+
 {% block main %}
-    <h1 class="mb-4">{{ 'messages.reset_password'|trans }}</h1>
+    <h1 class="mb-4">{{ 'title.new_password'|trans }}</h1>
 
     <div class="row">
         <div class="col-md-8">

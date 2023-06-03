@@ -76,6 +76,9 @@ form:
     submit: Відправити
     repeat_password: Повторіть пароль
     agree_terms: Погоджуюсь з умовами
+    new_password: Новий пароль
+  autocomplete:
+    new_password: Новий пароль
 
 # button should have a context (e.g. button: {save: Save, cancel: Cancel})
 button:
@@ -108,7 +111,7 @@ title:
   check_email: Перевірте електронну пошту
   reset_password: Скинути пароль
   password_reset_email_sent: Лист для скидання пароля надіслано
-  #Електронний лист з лінком для скидання пароля щойно був надісланий на вашу електронну пошту.
+  new_password: Новий пароль
 
 link:
   to_home: На головну
