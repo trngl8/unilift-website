@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Tests\Acceptance\Controller;
+namespace App\Tests\Acceptance\User;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ProjectControllerTest extends WebTestCase
+class CheckControllerTest extends WebTestCase
 {
     public function testGetTopicsSuccess(): void
     {
         $client = static::createClient();
-        $client->followRedirects();
-        $client->request('GET', '/project');
+        $client->request('GET', '/check');
 
         $this->assertResponseIsSuccessful();
     }

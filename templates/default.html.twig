@@ -61,8 +61,9 @@
                 <p class="lead" data-hello-target="output"></p>
                 {% if buttons is defined %}
                     <p class="lead">
-{#                        <a href="{{ path(buttons[0].getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ buttons[0].getCaption|trans }}">{{ buttons[0].getCaption|trans }}</a>#}
-                        <a href="{{ path(buttons[1].getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ buttons[1].getCaption|trans }}">{{ buttons[1].getCaption|trans }}</a>
+                        {% for button in buttons %}
+                            <a href="{{ path(button.getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ button.getCaption|trans }}">{{ button.getCaption|trans }}</a>
+                        {% endfor %}
                     </p>
                 {% endif %}
             </main>

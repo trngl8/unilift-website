@@ -31,13 +31,13 @@ class DefaultController
         }
 
         //TODO: check routes exists
-        $button1 = new LinkToRoute('app_register', 'button.register', 'primary', 'bi bi-1-circle');
-        $button2 = new LinkToRoute('app_login', 'button.login', 'outline-primary', 'bi bi-2-square');
+        //$buttons[] = new LinkToRoute('app_register', 'button.register', 'primary', 'bi bi-1-circle');
+        $buttons[] = new LinkToRoute('app_login', 'button.login', 'outline-primary', 'bi bi-2-square');
 
         $products = $this->productRepository->findBy([], ['id' => 'ASC'], 3, 0);
 
         $content = $template->render([
-            'buttons' => [$button1, $button2],
+            'buttons' => $buttons,
             'products' => $products,
         ]);
 
