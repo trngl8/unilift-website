@@ -25,9 +25,11 @@ class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
 
+
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private readonly string $adminEmail
     ) {
     }
 
@@ -140,7 +142,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('info@triangle.software', 'bot'))
+            ->from(new Address($this->adminEmail))
             ->to($user->getUsername())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
