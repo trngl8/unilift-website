@@ -25,7 +25,6 @@ class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
 
-
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager,
@@ -151,6 +150,7 @@ class ResetPasswordController extends AbstractController
             ])
         ;
 
+        //TODO: check exception
         $mailer->send($email);
 
         // Store the token object in session for retrieval in check-email route.

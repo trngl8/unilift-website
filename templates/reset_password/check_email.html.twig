@@ -1,6 +1,6 @@
 {% extends 'default.html.twig' %} {# layout was the old template #}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}{{ 'title.password_reset_email_sent'|trans }}{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -17,15 +17,16 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="mb-4">Reset your password</h1>
+
+    <h1 class="mb-4">{{ 'title.password_reset_email_sent'|trans }}</h1>
 
     <div class="row">
         <div class="col-md-8">
             <p>
-                If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-                This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                {{ 'messages.password_reset_email_sent'|trans }}
+                {{ 'email.reset.link_expire'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
             </p>
-            <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+            <p>{{ 'messages.dont_receive_or'|trans }} <a href="{{ path('app_forgot_password_request') }}">{{ 'messages.try_again'|trans }}</a>.</p>
         </div>
     </div>
 
