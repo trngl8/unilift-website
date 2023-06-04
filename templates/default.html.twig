@@ -16,6 +16,15 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock javascripts %}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQ5CV9NPGG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-LQ5CV9NPGG');
+    </script>
 </head>
 
 {% block body %}
