@@ -1,6 +1,7 @@
 action:
   yes: Yes
   no: No
+  home: Home
 app:
   inbox: Inbox
   profile: Profile

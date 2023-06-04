@@ -29,6 +29,7 @@ class UserChangePasswordCommand extends Command
     {
         parent::__construct($this::$defaultName);
         $this->em = $em;
+        //TODO: use UserService instead of passwordHasher
         $this->passwordHasher = $passwordHasher;
     }
 

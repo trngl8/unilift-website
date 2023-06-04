@@ -1,6 +1,7 @@
 action:
   yes: Так
   no: Ні
+  home: На головну
 app:
   inbox: Вхідні
   profile: Профіль

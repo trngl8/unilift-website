@@ -36,18 +36,10 @@ HELP
     {
         $io = new SymfonyStyle($input, $output);
 
-        try {
-            $result = $this->checkLicence();
-
-        } catch (\Exception $exception) {
-            $io->error('Error');
-            $io->writeln($exception->getMessage());
-            $io->writeln(sprintf("Exception %s in file %s on line %d ", $exception->getCode(), $exception->getFile(), $exception->getLine()));
-            return Command::FAILURE;
-        }
+        $result = $this->checkLicence();
 
         if ($input->getOption('v')) {
-            $io->writeln(sprintf("Credits: %s", $this->getCopyright()));
+            $io->writeln(sprintf("Credits: %s", 'default'));
         }
 
         $io->success('Your copy is legal');
@@ -59,10 +51,4 @@ HELP
     {
         return Command::SUCCESS;
     }
-
-    private function getCopyright()
-    {
-        return '/changeme';
-    }
-
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Button\LinkToRoute;
 use App\Exception\ThemeLayoutNotFoundException;
 use App\Repository\ProductRepository;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -15,9 +16,12 @@ class DefaultController
 
     private $twig;
 
-    public function __construct(ProductRepository $productRepository, Environment $twig) {
+    private $security;
+
+    public function __construct(ProductRepository $productRepository, Environment $twig, Security $security) {
         $this->productRepository = $productRepository;
         $this->twig = $twig;
+        $this->security = $security;
     }
 
     public function default() : Response
@@ -30,15 +34,18 @@ class DefaultController
             throw new ThemeLayoutNotFoundException("Default template not found");
         }
 
-        //TODO: check routes exists
-        //$buttons[] = new LinkToRoute('app_register', 'button.register', 'primary', 'bi bi-1-circle');
-        $buttons[] = new LinkToRoute('app_login', 'button.login', 'outline-primary', 'bi bi-2-square');
+        $user = $this->security->getUser();
 
-        $products = $this->productRepository->findBy([], ['id' => 'ASC'], 3, 0);
+        //TODO: check routes exists
+        if(!$user) {
+            //$buttons[] = new LinkToRoute('app_register', 'button.register', 'primary', 'bi bi-1-circle');
+            $buttons[] = new LinkToRoute('app_login', 'button.login', 'outline-primary', 'bi bi-2-square');
+        } else {
+            $buttons[] = new LinkToRoute('app_index', 'action.home', 'outline-primary', 'bi bi-1-circle');
+        }
 
         $content = $template->render([
             'buttons' => $buttons,
-            'products' => $products,
         ]);
 
         $response ??= new Response();

@@ -8,7 +8,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class ProfileFormTypeTest extends TypeTestCase
 {
-    public function testChangePasswordFormType(): void
+    public function testProfileFormTypeSubmit(): void
     {
         $formData = [
             'name' => 'Profile Name',

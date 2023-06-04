@@ -13,13 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TopicType extends AbstractType
 {
+    // TODO: use model for data class
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class)
             ->add('type', TextType::class)
             ->add('branch', TextType::class)
-//            ->add('closeAt', DateTimeType::class)
             ->add('save', SubmitType::class)
         ;
     }

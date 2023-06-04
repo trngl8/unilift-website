@@ -32,8 +32,8 @@ class ProfileController extends AbstractController
         $profile = $this->repository->findOneBy(['email' => $user->getUserIdentifier()]);
 
         if(!$profile) {
-            //TODO: or 404 ?
-
+            // TODO: or 404 ?
+            // TODO: this message throws on the bottom of the hero
             $this->addFlash('warning', 'no_active_profile');
 
             return $this->redirectToRoute('app_profile_edit');
