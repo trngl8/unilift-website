@@ -83,12 +83,6 @@
                             {{ 'menu.orders'|trans }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/card' %}active{% endif %}" href="{{ path('admin_card_index')}}">
-                            <i class="bi bi-card-heading"></i>
-                            {{ 'menu.cards'|trans }}
-                        </a>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link {% if app.request.pathInfo starts with '/admin/product' %}active{% endif %}" href="{{ path('admin_product_index')}}">
@@ -96,12 +90,7 @@
                             {{ 'menu.products'|trans }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/check' %}active{% endif %}" href="{{ path('admin_check_index')}}">
-                            <i class="bi bi-clipboard-check"></i>
-                            {{ 'menu.checks'|trans }}
-                        </a>
-                    </li>
+
 {#                    <li class="nav-item">#}
 {#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/profile' %}active{% endif %}" href="{{ path('admin_profile_index')}}">#}
 {#                            <i class="bi bi-people-fill"></i>#}
@@ -139,12 +128,7 @@
                             {{ 'menu.users'|trans }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/market' %}active{% endif %}" href="{{ path('admin_market_default')}}">
-                            <i class="bi bi-cart"></i>
-                            {{ 'menu.market'|trans }}
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {% if app.request.pathInfo starts with '/admin/integration' %}active{% endif %}" href="{{ path('admin_integration_index')}}">
                             <i class="bi bi-app"></i>

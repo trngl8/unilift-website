@@ -6,19 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class InfoCommandTest extends KernelTestCase
+class UserRemoveCommandTest extends KernelTestCase
 {
-    public function testInfoExecute(): void
+    public function testUserRemoveExecute(): void
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
 
-        $command = $application->find('app:info');
+        $command = $application->find('app:user:remove');
         $commandTester = new CommandTester($command);
-        $commandTester->execute([]);
+        $commandTester->execute(['username' => 'admin@test.com']);
         $commandTester->assertCommandIsSuccessful();
 
         $output = $commandTester->getDisplay();
-        $this->assertStringContainsString('Your copy is legal', $output);
+        $this->assertStringContainsString('[OK] User admin@test.com successfully removed!', $output);
     }
 }

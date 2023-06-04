@@ -6,19 +6,22 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class InfoCommandTest extends KernelTestCase
+class UserAddCommandTest extends KernelTestCase
 {
-    public function testInfoExecute(): void
+    public function testUserAddExecute(): void
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
 
-        $command = $application->find('app:info');
+        $command = $application->find('app:user:add');
         $commandTester = new CommandTester($command);
-        $commandTester->execute([]);
+        $commandTester->execute([
+            'username' => 'test2@test.com',
+            'password' => 'pass'
+        ]);
         $commandTester->assertCommandIsSuccessful();
 
         $output = $commandTester->getDisplay();
-        $this->assertStringContainsString('Your copy is legal', $output);
+        $this->assertStringContainsString('[OK] User successfully generated!', $output);
     }
 }

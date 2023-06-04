@@ -4,7 +4,7 @@ namespace App\Tests\Acceptance\User;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ResetPasswordControllerTest extends WebTestCase
+class ResetPasswordTest extends WebTestCase
 {
     public function testResetPasswordSuccess(): void
     {
@@ -12,7 +12,7 @@ class ResetPasswordControllerTest extends WebTestCase
         $client->followRedirects();
         $client->request('GET', '/reset-password');
 
-        $client->submitForm('Send password reset email', [
+        $client->submitForm('Send reset email', [
             'reset_password_request_form[username]' => 'test@test.com',
         ]);
 

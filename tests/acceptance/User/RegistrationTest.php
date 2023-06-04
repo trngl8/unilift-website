@@ -4,7 +4,7 @@ namespace App\Tests\Acceptance\User;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class RegistrationControllerTest extends WebTestCase
+class RegistrationTest extends WebTestCase
 {
     public function testRegisterSuccess(): void
     {
