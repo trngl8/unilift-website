@@ -52,6 +52,7 @@ messages:
   verification:
     email_sent: Електронний лист з лінком для підтвердження щойно був надісланий на вашу електронну пошту.
     check_spam: Якщо ви не отримали листа, перевірте папку "спам".
+    email_success: Ви успішно підтвердили свою електронну пошту.
 
 error:
   text_return_homepage: "Return to homepage"
@@ -113,6 +114,7 @@ title:
   reset_password: Скинути пароль
   password_reset_email_sent: Лист для скидання пароля надіслано
   new_password: Новий пароль
+  verification_success: Підтвердження пройшло успішно
 
 link:
   to_home: На головну

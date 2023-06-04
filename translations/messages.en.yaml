@@ -52,6 +52,7 @@ messages:
   verification:
     email_sent: An email was just sent that contains a link that you can use to verify your account.
     check_spam: If you don't receive an email please check your spam folder.
+    email_success: Your email address has been successfully verified.
 
 error:
   text_return_homepage: "Return to homepage"
@@ -129,6 +130,8 @@ title:
   verify: Verify
   reset_password: Reset password
   password_reset_email_sent: Password reset email sent
+  verification_success: Verification success
+
   new_password: New password
   topics: Topics
   topic_run: Topic run

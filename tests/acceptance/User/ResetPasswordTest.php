@@ -10,10 +10,10 @@ class ResetPasswordTest extends WebTestCase
     {
         $client = static::createClient();
         $client->followRedirects();
-        $client->request('GET', '/reset-password');
+        $client->request('GET', '/password/forgot');
 
         $client->submitForm('Send reset email', [
-            'reset_password_request_form[username]' => 'test@test.com',
+            'reset_password_request_form[username]' => 'admin@test.com',
         ]);
 
         $this->assertResponseIsSuccessful();
