@@ -9,7 +9,8 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
@@ -35,6 +36,9 @@ class UserLoginSuccessListenerTest extends TestCase
         $passport = $this->createMock(Passport::class);
         $authenticatedToken = $this->createMock(TokenInterface::class);
         $request = $this->createMock(Request::class);
+        $session = $this->createMock(FlashBagAwareSessionInterface::class);
+        $session->method('getBag')->willReturn($this->createMock(FlashBagInterface::class));
+        $request->method('getSession')->willReturn($session);
 
         $user = new User();
         $user->setRoles([$role]);
