@@ -24,7 +24,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'form.label.email',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a username',
+                        //'message' => 'Please enter a username',
                     ]),
                 ]],
             )
@@ -36,11 +36,11 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'form.label.repeat_password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        //'message' => 'Please enter a password',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        //'minMessage' => 'Your password should be at least {{ limit }} characters',
                         'max' => 4096,
                     ]),
                 ],
@@ -50,7 +50,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'form.label.agree_terms',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        //'message' => 'You should agree to our terms.',
                     ]),
                 ],
             ])

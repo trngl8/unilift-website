@@ -110,8 +110,11 @@ link:
   to_home: Homepage
 
 email:
+  reset_request:
+    subject: Your password reset request
   confirm:
     title: Confirm your email address
+    subject: Please confirm your email
     text: Please confirm your email address by clicking the link below.
     link: Confirm email
     link_expire: Link will expire in

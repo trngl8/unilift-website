@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="{{ path('app_home') }}">{{ 'title.home'|trans }}</a></li>
             <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
             <li class="breadcrumb-item"><a href="{{ path('app_login') }}">{{ 'title.login'|trans }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('app_forgot_password_request') }}">{{ 'title.password'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_forgot_password_request') }}">{{ 'title.reset_password'|trans }}</a></li>
             <li class="breadcrumb-item" aria-current="page">{{ 'title.new_password'|trans }}</li>
         </ol>
     </nav>
@@ -22,9 +22,9 @@
 
     <div class="row">
         <div class="col-md-8">
-            {{ form_start(resetForm) }}
+            {{ form_start(resetForm, {'attr': {'novalidate': 'novalidate'}}) }}
                 {{ form_row(resetForm.plainPassword) }}
-                <button class="btn btn-lg btn-primary" type="submit">{{ 'button.set_password'|trans }}</button>
+                <button class="btn btn-lg btn-outline-primary" type="submit">{{ 'button.set_password'|trans }}</button>
             {{ form_end(resetForm) }}
         </div>
     </div>

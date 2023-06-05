@@ -35,9 +35,26 @@
             <header class="mb-auto">
                 <div class="text-end">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <a href="{{ path('app_profile') }}" class="btn btn-sm btn-outline-secondary" title="{{ app.user.userIdentifier }}"><i class="bi bi-person-lock"></i></a>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-lock"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a href="{{ path('app_profile') }}" class="dropdown-item" type="button">{{ 'app.profile'|trans }}</a></li>
+                                <li><a href="{{ path('app_logout') }}" class="dropdown-item" type="button">{{ 'app.logout'|trans }}</a></li>
+                            </ul>
+                        </div>
                     {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
-                        <a href="{{ path('app_profile') }}" class="btn btn-sm btn-outline-secondary" title="{{ app.user.userIdentifier }}"><i class="bi bi-person-lock"></i></a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-lock"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a href="{{ path('app_profile') }}" class="dropdown-item" type="button">{{ 'app.profile'|trans }}</a></li>
+                                <li><a href="{{ path('app_logout') }}" class="dropdown-item" type="button">{{ 'app.logout'|trans }}</a></li>
+                            </ul>
+                        </div>
                     {% endif %}
                 </div>
             </header>

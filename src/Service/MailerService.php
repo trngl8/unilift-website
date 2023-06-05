@@ -14,6 +14,7 @@ class MailerService
     public function __construct(
         private readonly MailerInterface $mailer,
         private readonly string $adminEmail,
+        private readonly string $appName,
         private readonly VerifyEmailHelperInterface $verifyEmailHelper,
     ) {
     }
@@ -21,16 +22,16 @@ class MailerService
     public function sendReset(User $user, ResetPasswordToken $resetToken): void
     {
         $email = (new TemplatedEmail())
-            ->from(new Address($this->adminEmail))
+            ->from(new Address($this->adminEmail, $this->appName))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('email.reset_request.subject')
             ->htmlTemplate('password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
             ])
         ;
 
-        //TODO: check exception
+        //TODO: check transport exception
         $this->mailer->send($email);
     }
 
@@ -44,9 +45,9 @@ class MailerService
         );
 
         $email = (new TemplatedEmail())
-                ->from(new Address($this->adminEmail))
+                ->from(new Address($this->adminEmail, $this->appName))
                 ->to($user->getUsername())
-                ->subject('Please Confirm your Email')
+                ->subject('email.confirm.subject')
                 ->htmlTemplate('registration/confirmation_email.html.twig');
 
 
@@ -57,6 +58,7 @@ class MailerService
 
         $email->context($context);
 
+        //TODO: check transport exception
         $this->mailer->send($email);
     }
 }
