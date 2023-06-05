@@ -27,7 +27,7 @@ class MailerService
             ->from(new Address($this->adminEmail, $this->appName))
             ->to($user->getEmail())
             ->subject($this->translator->trans('email.reset_request.subject'))
-            ->htmlTemplate('password/email.html.twig')
+            ->htmlTemplate('email/reset_password.html.twig')
             ->context([
                 'resetToken' => $resetToken,
             ])
@@ -50,7 +50,7 @@ class MailerService
                 ->from(new Address($this->adminEmail, $this->appName))
                 ->to($user->getUsername())
                 ->subject($this->translator->trans('email.confirm.subject'))
-                ->htmlTemplate('registration/confirmation_email.html.twig');
+                ->htmlTemplate('email/confirmation.html.twig');
 
 
         $context = $email->getContext();

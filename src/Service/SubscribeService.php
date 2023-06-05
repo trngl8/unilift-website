@@ -85,7 +85,7 @@ class SubscribeService
             ->from($this->adminEmail) //TODO: default sender
             ->to(new Address($subscribe->email))
             ->subject('Invite or subscribe request') //TODO: translate
-            ->htmlTemplate('email/confirm.html.twig')
+            ->htmlTemplate('email/confirm_code.html.twig')
             ->context([
                 'expiration_date' => new \DateTime('+7 days'),
                 'message' => 'You have been invited to a service', //TODO: Service name

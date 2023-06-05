@@ -35,29 +35,6 @@ class MessageService implements ServiceInterface
     /**
      * @deprecated
      */
-    public function compose(Message $message) : Email
-    {
-        //TODO: choose email renderer
-        //$email = (new Email());
-
-        //TODO: store message
-        $email = (new TemplatedEmail())
-            ->priority(Email::PRIORITY_HIGH)
-            ->from($this->adminEmail) //TODO: default sender
-            ->to(new Address($message->to))
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('reply@example.com')
-            ->subject($message->subject)
-            ->htmlTemplate('email/confirm.html.twig')
-            ->context([
-                'expiration_date' => new \DateTime('+7 days'),
-                'message' => $message->text,
-                'subscribe_token' =>  ''
-            ])
-        ;
-        return $email;
-    }
 
     public function send(Email $email) : void
     {
