@@ -12,8 +12,16 @@
 
 {% block modal %}{% endblock %}
 
-{% block additional_info %}
-<!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+{% block body %}
+{% block extended_navbar %}{% endblock %}
+{% block simple_navbar %}{% endblock %}
+{% block top_menu %}{% endblock %}
+<main>
+    {% block main_body %}
+        {% block main %}
+        {% endblock %}
+    {% endblock %}
+</main>
 {% endblock %}
 
 {% block footer %}
@@ -56,4 +64,8 @@
             </div>
         </footer>
     </div>
+{% endblock %}
+
+{% block additional_info %}
+    <!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
 {% endblock %}

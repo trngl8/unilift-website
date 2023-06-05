@@ -1,11 +1,10 @@
 {% extends 'base_layout.html.twig' %}
 
 {% block extended_navbar %}
-
 <header class="border-bottom">
     <nav class="navbar navbar-expand-sm">
         <div class="container"> {# container-fluid #}
-            <a class="navbar-brand" href="#"><i class="bi bi-triangle"></i></a>
+            <a class="navbar-brand" href="{{ path('app_home') }}"><i class="bi bi-triangle"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,18 +23,17 @@
                         <a class="nav-link disabled">{{ 'Cart'|trans }}</a>
                     </li>
                 </ul>
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or is_granted('IS_AUTHENTICATED_FULLY') %}
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ path('app_profile') }}">{{ 'app.profile'|trans }}</a></li>
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a class="dropdown-item" href="{{ path('app_inbox') }}">{{ 'app.inbox'|trans }} {% if incoming_unread_count is defined %}<span class="badge text-bg-secondary">{{ incoming_unread_count }}</span>{% endif %}</a></li>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <li><a href="{{ path('admin_settings_index') }}" class="dropdown-item" type="button">{{ 'app.settings'|trans }}</a></li>
                             {% endif %}
-                            <li><a class="dropdown-item" href="{{ path('app_profile_invites') }}">{{ 'app.invites'|trans }}</a></li>
-                            <li><a class="dropdown-item" href="{{ path('app_order_index') }}">{{ 'app.orders'|trans }} {% if cart_items_count is defined %}<span class="badge text-bg-secondary">{{ cart_items_count }}{% endif %} </span></a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a></li>
                         </ul>
                     </div>
@@ -49,40 +47,40 @@
 {% endblock %}
 
 
-{% block body %}
-    {% block hero %}{% endblock hero %}
+{% block main_body %}
+    {% block hero %}{% endblock %}
+    {% block main_content %}
 
-    <div class="mt-4">
-        <main class="container">
+        <main class="container mt-4">
+            {% block breadcrumbs %}{% endblock %}
 
-            {% block breadcrumbs %}
-            {% endblock %}
+            {% block flashes %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message|trans }}
+                    </div>
+                {% endfor %}
 
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-secondary" role="alert">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message|trans }}
+                    </div>
+                {% endfor %}
 
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
+                {% for message in app.flashes('warning') %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ message|trans }}
+                    </div>
+                {% endfor %}
 
-            {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning" role="alert">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
-
-            {% block add_flashes %}
+                {% block add_flashes %}{% endblock %}
             {% endblock %}
 
             {% block main %}
             {% endblock %}
         </main>
-    </div>
+
+    {% endblock%}
 {% endblock %}
 
 
