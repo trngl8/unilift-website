@@ -53,7 +53,7 @@ messages:
     email_sent: An email was just sent that contains a link that you can use to verify your account.
     check_spam: If you don't receive an email please check your spam folder.
     email_success: Your email address has been successfully verified.
-
+    next_actions: You can now log in the system using your email and password or return to the homepage.
 error:
   text_return_homepage: "Return to homepage"
 

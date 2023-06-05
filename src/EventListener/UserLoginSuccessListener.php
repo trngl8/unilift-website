@@ -23,11 +23,17 @@ class UserLoginSuccessListener
 
         $roles = $user->getRoles();
 
+        $session = $event->getRequest()->getSession();
+
         if(in_array("ROLE_USER", $roles)) {
+            // TODO: choose flash type and message
+            $session->getFlashBag()->add('notice', 'You are logged in!');
             $event->setResponse(new RedirectResponse($this->router->generate('app_index'))); // TODO: maybe app_user?
         }
 
         if(in_array("ROLE_ADMIN", $roles)) {
+            // TODO: choose flash type and message
+            $session->getFlashBag()->add('notice', 'You are logged in!');
             $event->setResponse(new RedirectResponse($this->router->generate('admin')));
         }
     }

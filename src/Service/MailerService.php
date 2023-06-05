@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
@@ -16,6 +17,7 @@ class MailerService
         private readonly string $adminEmail,
         private readonly string $appName,
         private readonly VerifyEmailHelperInterface $verifyEmailHelper,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -24,7 +26,7 @@ class MailerService
         $email = (new TemplatedEmail())
             ->from(new Address($this->adminEmail, $this->appName))
             ->to($user->getEmail())
-            ->subject('email.reset_request.subject')
+            ->subject($this->translator->trans('email.reset_request.subject'))
             ->htmlTemplate('password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
@@ -47,7 +49,7 @@ class MailerService
         $email = (new TemplatedEmail())
                 ->from(new Address($this->adminEmail, $this->appName))
                 ->to($user->getUsername())
-                ->subject('email.confirm.subject')
+                ->subject($this->translator->trans('email.confirm.subject'))
                 ->htmlTemplate('registration/confirmation_email.html.twig');
 
 
