@@ -124,6 +124,8 @@ class PasswordController extends AbstractController
 
             $this->cleanSessionAfterReset();
 
+            $this->addFlash('success', 'Your password has been changed.');
+
             return $this->redirectToRoute('app_login');
         }
 

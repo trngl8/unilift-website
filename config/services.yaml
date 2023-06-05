@@ -37,6 +37,3 @@ services:
 
     App\EventSubscriber\LocaleControllerSubscriber:
         arguments: ['%kernel.default_locale%']
-
-    App\Controller\DefaultController:
-        tags: ['controller.service_arguments']

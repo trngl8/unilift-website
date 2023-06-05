@@ -20,5 +20,7 @@ class RegistrationTest extends WebTestCase
         ]);
 
         $this->assertResponseIsSuccessful();
+
+        //TODO: check email sent
     }
 }
