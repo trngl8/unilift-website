@@ -42,7 +42,6 @@ class DefaultController extends AbstractController
         //TODO: check routes exists
         $buttons[] = new LinkToRoute('default', 'button.more', 'primary', 'bi bi-1-circle');
         $buttons[] = new LinkToRoute('default_index', 'button.subscribe', 'outline-primary', 'bi bi-2-square');
-        $buttons[] = new LinkToRoute('default_index', 'button.light', 'light');
 
         return$this->render('default/index.html.twig', [
             'buttons' => $buttons,

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app_name }} {{ app.request.pathinfo }} {% endblock %}
+
+{% block favicon %}
+{#<link rel="icon" href="/favicon.ico">#}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon16x16.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
+{% endblock %}
+
+{% block modal %}{% endblock %}
+
+{% block additional_info %}
+<!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+{% endblock %}
+
+{% block footer %}
+    <div class="container">
+        <footer class="row row-cols-5 py-5 my-5 border-top">
+            <div class="col">
+                <p class="text-muted">&copy; {{ app_name }} {{ app_version }}</p>
+            </div>
+
+            <div class="col">
+
+            </div>
+
+            <div class="col">
+                <h5>Home</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="{{ path('app_product_index') }}" class="nav-link p-0 text-muted">Products</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('app_offer_index') }}" class="nav-link p-0 text-muted">Offer</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('app_info') }}" class="nav-link p-0 text-muted">Info</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('app_contact') }}" class="nav-link p-0 text-muted">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h5>Subscribe</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="{{ path('default_index') }}" class="nav-link p-0 text-muted">Subscribe Add</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('default') }}" class="nav-link p-0 text-muted">Offer List</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h5>User</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="{{ path('app_register') }}" class="nav-link p-0 text-muted">Registration</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('app_login') }}" class="nav-link p-0 text-muted">Login</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('app_profile') }}" class="nav-link p-0 text-muted">Profile</a></li>
+                    <li class="nav-item mb-2"><a href="{{ path('admin') }}" class="nav-link p-0 text-muted">Admin</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

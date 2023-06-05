@@ -8,6 +8,7 @@ app:
   orders: Замовлення
   logout: Вихід
   invites: Запрошення
+  settings: Налаштування
 menu:
   topics: Задачі
   projects: Проєкти

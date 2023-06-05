@@ -8,6 +8,7 @@ app:
   orders: Orders
   logout: Logout
   invites: Invites
+  settings: Settings
 menu:
   topics: Topics
   projects: Projects

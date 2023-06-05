@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-{#        <link rel="icon" href="/favicon.ico">#}
-        <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}">
-        <link rel="alternate icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon16x16.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
 
-{#        <meta property="og:title" content="A Basic HTML5 Template">#}
-{#        <meta property="og:type" content="website">#}
-{#        <meta property="og:url" content="https://localhost/url">#}
-{#        <meta property="og:description" content="A simple HTML5 Template for new projects.">#}
-{#        <meta property="og:image" content="image.png">#}
+    {% block favicon %}
+    <link rel="icon" href="data:,">
+    {% endblock %}
 
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock stylesheets %}
+    {% block meta_additional %}{% endblock %}
 
-        {#    <link rel="canonical" href="{{ '' }}">#}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock stylesheets %}
+    {% block add_stylesheets %}{% endblock %}
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock javascripts %}
+    {% block external_javascripts %}{% endblock %}
+</head>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
-        {% block add_stylesheets %}{%endblock%}
+<body>
+{% block extended_navbar %}{% endblock %}
+{% block simple_navbar %}{% endblock %}
+{% block top_menu %}{% endblock %}
+{% block body %}
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+{% endblock %}
+</body>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock javascripts %}
-    </head>
-    <body>
-        {% block simple_navbar %}{% endblock %}
-        {% block body %}{% endblock %}
-        {% block footer %}{% endblock %}
-        <!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
 
-    </body>
- </html>
+{% block footer %}
+    <footer></footer>
+{% endblock %}
+
+{% block additional_info %}{% endblock %}
+
+{% block end_stylesheets %}{% endblock %}
+
+{% block end_javascripts %}{% endblock %}
+</html>
