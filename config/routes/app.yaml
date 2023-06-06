@@ -1,7 +1,11 @@
 #deprecated
-app_home:
+app_default:
   path: /
   controller: App\Controller\DefaultController::default
+
+app_home:
+  path: /home
+  controller: App\Controller\DefaultController::home
 
 #deprecated
 app_index:
