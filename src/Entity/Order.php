@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: 'app_orders')]
@@ -40,6 +41,7 @@ class Order
     private string $deliveryEmail;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $deliveryPhone;
 
     public function __construct()

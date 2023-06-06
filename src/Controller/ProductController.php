@@ -60,6 +60,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $order = $this->orderService->orderProduct($product, $orderRequest);
 
             $this->addFlash('success', sprintf('%s flash.success.created', $order->getUuid()));

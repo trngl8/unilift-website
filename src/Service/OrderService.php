@@ -6,14 +6,18 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Model\OrderProduct;
 use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerInterface;
 
 class OrderService
 {
-    private $doctrine;
+    private ManagerRegistry $doctrine;
 
-    public function __construct(ManagerRegistry $doctrine)
+    private LoggerInterface $logger;
+
+    public function __construct(ManagerRegistry $doctrine, LoggerInterface $logger)
     {
         $this->doctrine = $doctrine;
+        $this->logger = $logger;
     }
 
     public function orderProduct(Product $product, OrderProduct $orderRequest): Order
@@ -25,9 +29,14 @@ class OrderService
         $order->setAmount($product->getFees());
         $order->setCurrency('UAH');
 
-        $entityManager = $this->doctrine->getManager();
-        $entityManager->persist($order);
-        $entityManager->flush();
+        try {
+            $entityManager = $this->doctrine->getManager();
+            $entityManager->persist($order);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+            throw new \RuntimeException('Order not created');
+        }
 
         return $order;
     }
