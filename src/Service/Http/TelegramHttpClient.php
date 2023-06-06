@@ -3,7 +3,6 @@
 namespace App\Service\Http;
 
 use App\Exception\ExternalServiceHttpFail;
-use App\Exception\InvalidResultException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,7 +87,7 @@ class TelegramHttpClient
 
         if(Response::HTTP_OK !== $response->getStatusCode()) {
             //TODO: throw another type of exception
-            throw new ExternalServiceHttpFail(sprintf('Bad code %d. on %s', $response->getStatusCode(), $url));
+            throw new \RuntimeException(sprintf('Bad code %d. on %s', $response->getStatusCode(), $url));
         }
 
         return $response;
@@ -108,7 +107,7 @@ class TelegramHttpClient
 
         if(Response::HTTP_OK !== $response->getStatusCode()) {
             //TODO: throw another type of exception
-            throw new ExternalServiceHttpFail(sprintf('Bad code %d. on %s', $response->getStatusCode(), $url));
+            throw new \RuntimeException(sprintf('Bad code %d. on %s', $response->getStatusCode(), $url));
         }
 
         return $response;
@@ -119,7 +118,7 @@ class TelegramHttpClient
         $result = json_decode($response->getContent(), true);
 
         if(true !== $result['ok']) {
-            throw new InvalidResultException("ok should be true in result");
+            throw new \RuntimeException("ok should be true in result");
         }
 
         //TODO: check if array

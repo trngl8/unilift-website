@@ -24,13 +24,9 @@ default_index:
   path: /index
   controller: App\Controller\DefaultController::index
 
-app_restricted:
-  path: /restricted
-  controller: App\Controller\HomeController::home # splash screen
-
 app_info:
   path: /info
-  controller: App\Controller\HomeController::info
+  controller: App\Controller\DefaultController::info
 
 app_contact:
   path: /contact
@@ -43,15 +39,3 @@ app_inbox:
 app_cart:
   path: /cart
   controller: App\Controller\CartController::cart
-
-admin:
-  path: /admin
-  controller: App\Controller\Admin\AdminDashboardController::admin
-
-admin_inbox:
-  path: /admin/inbox
-  controller: App\Controller\Admin\AdminDashboardController::inbox
-
-app_features:
-  path: /features
-  controller: App\Controller\TopicController::index

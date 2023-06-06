@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Service\MessageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminDashboardController extends AbstractController
 {
@@ -15,11 +16,13 @@ class AdminDashboardController extends AbstractController
         $this->messageService  = $messageService;
     }
 
+    #[Route('/admin', name: 'admin')]
     public function admin(): Response
     {
         return $this->render('admin.html.twig');
     }
 
+    #[Route('/admin/inbox', name: 'admin_inbox')]
     public function inbox(): Response
     {
         $user = $this->getUser();

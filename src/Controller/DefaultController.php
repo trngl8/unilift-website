@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Button\LinkToRoute;
-use App\Exception\ThemeLayoutNotFoundException;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
-use Twig\Error\LoaderError;
 
 class DefaultController extends AbstractController
 {
@@ -52,5 +48,10 @@ class DefaultController extends AbstractController
             'buttons' => $buttons,
             'products' => $products,
         ]);
+    }
+
+    public function info() : Response
+    {
+        return $this->render('default/info.html.twig');
     }
 }

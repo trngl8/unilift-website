@@ -15,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class TopicController extends AbstractController
 {
     #[Route('/topic', name: 'topic_index')]
+    #[Route('/features', name: 'app_features')]
     public function index(ManagerRegistry $doctrine): Response
     {
         //use some options
