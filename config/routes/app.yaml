@@ -4,6 +4,10 @@ app_default:
   controller: App\Controller\DefaultController::default
 
 app_home:
+  path: /
+  controller: App\Controller\DefaultController::default
+
+app_home_default:
   path: /home
   controller: App\Controller\DefaultController::home
 
