@@ -5,9 +5,11 @@ namespace App\Service;
 use App\Entity\Offer;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Model\OrderProduct;
 use App\Model\OrderRequest;
 use App\Repository\OfferRepository;
 use App\Repository\OrderRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
 
 class OfferService
@@ -17,11 +19,13 @@ class OfferService
 
     private $paymentService;
 
-    public function __construct(OfferRepository $offers, OrderRepository $orders, LiqpayService $paymentService)
+    private $doctrine;
+    public function __construct(ManagerRegistry $doctrine, OfferRepository $offers, OrderRepository $orders, LiqpayService $paymentService)
     {
         $this->paymentService = $paymentService;
         $this->offers = $offers;
         $this->orders = $orders;
+        $this->doctrine = $doctrine;
     }
 
     public function getOffer(int $id): Offer

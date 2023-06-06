@@ -3,8 +3,15 @@
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'brcmbs.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
             <li class="breadcrumb-item" aria-current="page">{{ 'title.products'|trans }}</li>
+            {# TODO: possible changes here #}
+            {% block breadcrumbs_previous %}
+                <li class="breadcrumb-item" aria-current="page">{{ product.title }}</li>
+            {% endblock %}
+            {% block breadcrumbs_current %}
+                <li class="breadcrumb-item" aria-current="page"><span class="badge text-bg-success">+</span> <b>{{ 'order'|trans }} {{ product.title }}</b></li>
+            {% endblock %}
         </ol>
     </nav>
 {% endblock %}

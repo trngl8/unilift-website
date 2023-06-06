@@ -1,0 +1,36 @@
+{% extends 'product/product_default.html.twig' %}
+
+{% block breadcrumbs_previous %}
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ path('app_product_show', {alias:product.id}) }}">{{ product.title }}</a></li>
+{% endblock %}
+{% block breadcrumbs_current %}
+    <li class="breadcrumb-item" aria-current="page"><span class="badge text-bg-success">+</span> <b>{{ 'order'|trans }} {{ product.title }}</b></li>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5" >
+            <div class="col-10 col-sm-8 col-lg-4">
+            </div>
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold lh-1 mb-3"> {{ product.title }}</h1>
+                <p class="lead"> {{ product.description }}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-lg btn-outline-primary">{{ 'action.order'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
