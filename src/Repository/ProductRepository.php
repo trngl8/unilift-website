@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception\TableNotFoundException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,5 +38,10 @@ class ProductRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findMain(array $criteria = [], ?array $orderBy = null, $limit = 3, $offset = 0): iterable
+    {
+        return parent::findBy($criteria, ['id' => 'ASC'], $limit, $offset);
     }
 }

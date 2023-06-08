@@ -4,9 +4,10 @@ namespace App\EventSubscriber;
 
 use App\Service\MessageService;
 use App\Service\OfferService;
+use Doctrine\DBAL\Exception\DriverException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Twig\Environment;
 
 class TwigEventSubscriber implements EventSubscriberInterface
@@ -73,7 +74,13 @@ class TwigEventSubscriber implements EventSubscriberInterface
         $this->twig->addGlobal('top_menu', $topMenu);
 
         // Check user messages
-        $user = $this->security->getUser();
+        try {
+            $user = $this->security->getUser();
+        } catch (DriverException $e) {
+            //throw $e;
+            $user = null;
+        }
+
         if(!$user)  {
             return;
         }

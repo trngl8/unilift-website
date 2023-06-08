@@ -91,6 +91,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/page' %}active{% endif %}" href="#">
+                            <i class="bi bi-box"></i>
+                            {{ 'menu.products'|trans }}
+                        </a>
+                    </li>
+
+
 {#                    <li class="nav-item">#}
 {#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/profile' %}active{% endif %}" href="{{ path('admin_profile_index')}}">#}
 {#                            <i class="bi bi-people-fill"></i>#}
@@ -104,24 +112,24 @@
                             {{ 'menu.topics'|trans }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/project' %}active{% endif %}" href="{{ path('admin_project_index')}}">
-                            <i class="bi bi-kanban-fill"></i>
-                            {{ 'menu.projects'|trans }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/invite' %}active{% endif %}" href="{{ path('admin_invite_index')}}">
-                            <i class="bi bi-node-plus-fill"></i>
-                            {{ 'menu.invites'|trans }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/offer' %}active{% endif %}" href="{{ path('admin_offer_index')}}">
-                            <i class="bi bi-clipboard2"></i>
-                            {{ 'menu.offer'|trans }}
-                        </a>
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/project' %}active{% endif %}" href="{{ path('admin_project_index')}}">#}
+{#                            <i class="bi bi-kanban-fill"></i>#}
+{#                            {{ 'menu.projects'|trans }}#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/invite' %}active{% endif %}" href="{{ path('admin_invite_index')}}">#}
+{#                            <i class="bi bi-node-plus-fill"></i>#}
+{#                            {{ 'menu.invites'|trans }}#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link {% if app.request.pathInfo starts with '/admin/offer' %}active{% endif %}" href="{{ path('admin_offer_index')}}">#}
+{#                            <i class="bi bi-clipboard2"></i>#}
+{#                            {{ 'menu.offer'|trans }}#}
+{#                        </a>#}
+{#                    </li>#}
                     <li class="nav-item">
                         <a class="nav-link {% if app.request.pathInfo starts with '/admin/user' %}active{% endif %}" href="{{ path('admin_user_index')}}">
                             <i class="bi bi-people-fill"></i>

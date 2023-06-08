@@ -30,7 +30,7 @@ app_info:
 
 app_contact:
   path: /contact
-  controller: App\Controller\InboxController::contact
+  controller: App\Controller\DefaultController::contact
 
 app_inbox:
   path: /inbox

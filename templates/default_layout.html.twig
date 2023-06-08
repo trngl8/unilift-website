@@ -14,15 +14,45 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('app_index') }}">{{ 'menu.index'|trans }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_project_index') }}">{{ 'menu.projects'|trans }}</a>
+                        <a class="nav-link" href="{{ path('app_product_index') }}">{{ 'menu.products'|trans }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_offer_index') }}">{{ 'menu.offer'|trans }}</a>
+                        <a class="nav-link" href="{{ path('app_contact') }}">{{ 'menu.contacts'|trans }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">{{ 'Cart'|trans }}</a>
+{#                        <a class="nav-link disabled">{{ 'menu.cart'|trans }}</a>#}
                     </li>
                 </ul>
+                {% if order_form is defined %}
+                <div id="orderForm">
+                    <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        {{ "button.order"|trans }}
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="orderModalLabel">{{ 'title.order'|trans }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ form_start(order_form, {'action': path('app_product_order', {'id' : 1}), 'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
+                                    {{ form_widget(order_form) }}
+                                    <button type="submit" class="btn btn-lg btn-outline-primary">{{ 'button.submit'|trans }}</button>
+                                    {{ form_end(order_form) }}
+                                </div>
+                                <div class="modal-footer">
+{#                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'button.close'|trans }}</button>#}
+{#                                    <button type="button" class="btn btn-primary">{{ 'button.submit'|trans }}</button>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') or is_granted('IS_AUTHENTICATED_FULLY') %}
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,6 +92,12 @@
                 {% endfor %}
 
                 {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message|trans }}
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('danger') %}
                     <div class="alert alert-danger" role="alert">
                         {{ message|trans }}
                     </div>

@@ -74,6 +74,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+    //TODO: move to the Order module
     #[Route('/{id}/order/success', name: 'order_success', methods: ['GET'])]
     public function success(Product $product): Response
     {

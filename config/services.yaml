@@ -37,3 +37,6 @@ services:
 
     App\EventSubscriber\LocaleControllerSubscriber:
         arguments: ['%kernel.default_locale%']
+
+#    App\EventListener\ExceptionListener:
+#        tags: [kernel.event_listener]

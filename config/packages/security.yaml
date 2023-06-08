@@ -41,7 +41,7 @@ security:
                 secret: '%kernel.secret%'
                 always_remember_me: true
 
-            entry_point: form_login
+            #entry_point: form_login
 
 #            oauth:
 #                resource_owners:
@@ -67,7 +67,6 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
 
          - { path: ^/profile, roles: ROLE_USER }
-         - { path: ^/index, roles: ROLE_USER }
          - { path: ^/contact, roles: ROLE_USER }
          - { path: ^/product, roles: ROLE_USER }
 
