@@ -26,8 +26,8 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                #default_target_path: app_index
-                #use_referer: true
+                default_target_path: /index
+                use_referer: true
             logout:
                 path: app_logout
                 target: app_index

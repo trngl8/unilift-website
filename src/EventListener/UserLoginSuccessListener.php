@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 
+/**
+ * @deprecated
+ */
 #[AsEventListener]
 class UserLoginSuccessListener
 {
@@ -19,6 +22,8 @@ class UserLoginSuccessListener
 
     public function __invoke(LoginSuccessEvent $event): void
     {
+        //TODO: check if this class is still needed
+        return;
         $user = $event->getUser();
 
         $roles = $user->getRoles();
