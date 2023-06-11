@@ -56,12 +56,19 @@ class DefaultController extends AbstractController
             throw $e;
         }
 
+        $buttons = [];
+
+        if(count($products) === 0) {
+            $this->addFlash('warning', 'No products found');
+            $buttons[] = new LinkToRoute('admin', 'button.admin', 'primary');
+        }
+
         //TODO: check routes exists
-        $buttons[] = new LinkToRoute('default', 'button.more', 'primary', 'bi bi-1-circle');
-        $buttons[] = new LinkToRoute('default_index', 'button.subscribe', 'outline-primary', 'bi bi-2-square');
+//        $buttons[] = new LinkToRoute('default', 'button.more', 'primary', 'bi bi-1-circle');
+//        $buttons[] = new LinkToRoute('default_index', 'button.subscribe', 'outline-primary', 'bi bi-2-square');
 
         return$this->render('default/index.html.twig', [
-            //'buttons' => $buttons,
+            'buttons' => $buttons,
             'products' => $products,
             'order_form' => $form->createView(),
         ]);

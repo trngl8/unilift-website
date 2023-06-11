@@ -2,6 +2,7 @@ action:
   yes: Так
   no: Ні
   home: На головну
+  order: Залишити заявку
 app:
   inbox: Вхідні
   profile: Профіль
@@ -28,6 +29,7 @@ menu:
   users: Користувачі
   market: Market
   integrations: Інтеграції
+  contacts: Контакти
 
 messages:
   login_fail: "Login failed"
@@ -78,6 +80,9 @@ form:
     repeat_password: Повторіть пароль
     agree_terms: Погоджуюсь з умовами
     new_password: Новий пароль
+    location: Місцезнаходження
+    phone: Телефон
+    details: Коментар
   autocomplete:
     new_password: Новий пароль
 

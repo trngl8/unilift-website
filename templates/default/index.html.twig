@@ -19,15 +19,17 @@
                         <button type="submit" class="btn btn-lg btn-outline-primary">{{ 'action.order'|trans }}</button>
                     </form>
 
-                    {% for button in buttons %}
-                        <a href="{{ path(button.getRoute) }}"
-                           class="btn btn-{{ button.getType }} btn-lg px-4 me-md-2">
-                            {% if button.getIcon %}
-                                <i class="{{ button.getIcon }}"></i>
-                            {% endif %}
-                            {{ button.getCaption|trans }}
-                        </a>
-                    {% endfor %}
+                    {% if buttons is defined and buttons|length > 0 %}
+                        {% for button in buttons %}
+                            <a href="{{ path(button.getRoute) }}"
+                               class="btn btn-{{ button.getType }} btn-lg px-4 me-md-2">
+                                {% if button.getIcon %}
+                                    <i class="{{ button.getIcon }}"></i>
+                                {% endif %}
+                                {{ button.getCaption|trans }}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
 
                 </div>
             </div>

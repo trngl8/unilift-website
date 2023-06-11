@@ -13,11 +13,21 @@ class OrderProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('phone', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('location', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('name', TextType::class, [
+                'label' =>'form.label.name',
+            ])
+            ->add('phone', TextType::class, [
+                'label' =>'form.label.phone',
+            ])
+            ->add('email', EmailType::class, [
+                'label' =>'form.label.email',
+            ])
+            ->add('location', TextType::class, [
+                'label' =>'form.label.location',
+            ])
+            ->add('description', TextareaType::class, [
+                'label' =>'form.label.details',
+            ])
         ;
     }
 

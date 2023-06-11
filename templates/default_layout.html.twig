@@ -25,8 +25,8 @@
                 </ul>
                 {% if order_form is defined %}
                 <div id="orderForm">
-                    <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#orderModal">
-                        {{ "button.order"|trans }}
+                    <button type="button" class="btn btn-outline-danger mx-2" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        {{ "action.order"|trans }}
                     </button>
 
                     <!-- Modal -->
@@ -34,11 +34,11 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="orderModalLabel">{{ 'title.order'|trans }}</h5>
+                                    <h5 class="modal-title" id="orderModalLabel">{{ 'action.order'|trans }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    {{ form_start(order_form, {'action': path('app_product_order', {'id' : 1}), 'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
+                                    {{ form_start(order_form, {'action': path('app_order_new'), 'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
                                     {{ form_widget(order_form) }}
                                     <button type="submit" class="btn btn-lg btn-outline-primary">{{ 'button.submit'|trans }}</button>
                                     {{ form_end(order_form) }}

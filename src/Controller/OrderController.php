@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Form\OrderProductType;
+use App\Model\OrderProduct;
 use App\Model\PaymentResult;
 use App\Service\OfferService;
+use App\Service\OrderService;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,15 +22,42 @@ class OrderController extends AbstractController
 {
     private $offerService;
 
+    private $orderService;
+
     private $doctrine;
 
     private LoggerInterface $logger;
 
-    public function __construct(ManagerRegistry $doctrine, OfferService $offerService, LoggerInterface $logger)
+    public function __construct(ManagerRegistry $doctrine, OfferService $offerService, OrderService $orderService, LoggerInterface $logger)
     {
         $this->offerService = $offerService;
+        $this->orderService = $orderService;;
         $this->doctrine = $doctrine;
         $this->logger = $logger;
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(Request $request) : Response
+    {
+        $product = new Product();
+        $orderRequest = new OrderProduct();
+        $form = $this->createForm(OrderProductType::class, $orderRequest);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $order = $this->orderService->orderProduct($product, $orderRequest);
+
+            $this->addFlash('success', sprintf('%s flash.success.created', $order->getUuid()));
+
+            return $this->redirectToRoute('app_product_order_success', ['id' => $product->getId()]);
+        }
+
+        return $this->render('order/new.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product,
+        ]);
     }
 
     #[Route('', name: 'index', methods: ['GET'])]

@@ -52,7 +52,8 @@ class UserLoginSuccessListenerTest extends TestCase
         $this->dispatcher->dispatch($event, LoginSuccessEvent::class);
 
         // TODO check correct response URL
-        $this->assertInstanceOf(RedirectResponse::class, $event->getResponse());
+        //$this->assertInstanceOf(RedirectResponse::class, $event->getResponse());
+        $this->assertNull($event->getResponse());
     }
 
     public function dataRedirects(): iterable

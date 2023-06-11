@@ -1,0 +1,23 @@
+{% extends 'product/order_request.html.twig' %}
+
+{% block breadcrumbs_previous %}
+{% endblock %}
+{% block breadcrumbs_current %}
+    <li class="breadcrumb-item" aria-current="page"><span class="badge text-bg-success">+</span> <b>{{ 'action.order'|trans }} {{ product.title }}</b></li>
+{% endblock %}
+
+    {% block product_title %}
+        <div class="container">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" >
+                <div class="col-10 col-sm-8 col-lg-4">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="display-5 fw-bold lh-1 mb-3"> {{ 'product.title'|trans }}</h1>
+                    <p class="lead"> {{ 'product.description'|trans }}</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
