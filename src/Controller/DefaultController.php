@@ -70,7 +70,7 @@ class DefaultController extends AbstractController
         return$this->render('default/index.html.twig', [
             'buttons' => $buttons,
             'products' => $products,
-            'order_form' => $form->createView(),
+            //'order_form' => $form->createView(),
         ]);
     }
 

@@ -44,23 +44,6 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/invites', name: 'app_profile_invites')]
-    public function invites(): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        $user = $this->getUser();
-        $profile = $this->repository->findOneBy(['email' => $user->getUserIdentifier()]);
-
-        if(!$profile) {
-            return $this->redirectToRoute('app_profile_edit');
-        }
-
-        return $this->render('profile/invites.html.twig', [
-            'profile' => $profile,
-        ]);
-    }
-
     #[Route('/profile/edit', name: 'app_profile_edit')]
     public function edit(Request $request): Response
     {

@@ -10,6 +10,8 @@ app:
   logout: Вихід
   invites: Запрошення
   settings: Налаштування
+  admin: Адміністрування
+  manager: Менеджер
 menu:
   topics: Задачі
   projects: Проєкти
@@ -30,6 +32,10 @@ menu:
   market: Market
   integrations: Інтеграції
   contacts: Контакти
+
+order:
+  new: Нове замовлення
+  description: Залиште заявку і ми зв'яжемося з вами найближчим часом.
 
 messages:
   login_fail: "Login failed"
@@ -119,6 +125,7 @@ title:
   password_reset_email_sent: Лист для скидання пароля надіслано
   new_password: Новий пароль
   verification_success: Підтвердження пройшло успішно
+  products: Продукція
 
 link:
   to_home: На головну

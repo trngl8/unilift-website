@@ -6,8 +6,8 @@ twig:
         app_version: '%env(APP_VERSION)%'
         app_domain: '%env(APP_DOMAIN)%'
         app_theme: '%env(APP_THEME)%'
-        app_default_module: '%env(DEFAULT_MODULE)%'
-
+        #app_default_module: '%env(DEFAULT_MODULE)%'
+        form_service: '@App\Service\OrderFormView'
 when@test:
     twig:
         strict_variables: true

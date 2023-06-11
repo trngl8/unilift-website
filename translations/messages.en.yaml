@@ -10,6 +10,8 @@ app:
   logout: Logout
   invites: Invites
   settings: Settings
+  admin: Admin
+  manager: Manager
 menu:
   topics: Topics
   projects: Projects

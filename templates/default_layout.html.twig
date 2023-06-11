@@ -1,10 +1,25 @@
 {% extends 'base_layout.html.twig' %}
 
+{% block add_stylesheets %}
+    <style>
+    .content {
+        background-image: url("{{ asset('build/images/bg.svg') }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*background-position-x: left;*/
+        /*background-position-y: top;*/
+        background-position: top left;
+    }
+    </style>
+{% endblock %}
+
 {% block extended_navbar %}
 <header class="border-bottom">
     <nav class="navbar navbar-expand-sm">
         <div class="container"> {# container-fluid #}
-            <a class="navbar-brand" href="{{ path('app_home') }}"><i class="bi bi-triangle"></i></a>
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img src="{{ asset('build/images/logo.png') }}" alt="" width="200">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +38,8 @@
 {#                        <a class="nav-link disabled">{{ 'menu.cart'|trans }}</a>#}
                     </li>
                 </ul>
-                {% if order_form is defined %}
+                {% if form_service is defined %}
+                    {% set order_form = form_service.createOrderForm %}
                 <div id="orderForm">
                     <button type="button" class="btn btn-outline-danger mx-2" data-bs-toggle="modal" data-bs-target="#orderModal">
                         {{ "action.order"|trans }}
@@ -61,14 +77,15 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ path('app_profile') }}">{{ 'app.profile'|trans }}</a></li>
                             {% if is_granted("ROLE_ADMIN") %}
-                                <li><a href="{{ path('admin_settings_index') }}" class="dropdown-item" type="button">{{ 'app.settings'|trans }}</a></li>
+                                <li><a href="{{ path('easy_admin') }}" class="dropdown-item" type="button">{{ 'app.admin'|trans }}</a></li>
+                                <li><a href="{{ path('admin') }}" class="dropdown-item" type="button">{{ 'app.manager'|trans }}</a></li>
                             {% endif %}
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a></li>
                         </ul>
                     </div>
-                {% else %}
-                    <a class="btn btn-outline-secondary ms-lg-2" href="{{ path('app_login') }}"><i class="bi bi-person"></i> {{ 'login'|trans }}</a>
+{#                {% else %}#}
+{#                    <a class="btn btn-outline-secondary ms-lg-2" href="{{ path('app_login') }}"><i class="bi bi-person"></i> {{ 'login'|trans }}</a>#}
                 {% endif %}
             </div>
         </div>
@@ -81,7 +98,7 @@
     {% block hero %}{% endblock %}
     {% block main_content %}
 
-        <main class="container mt-4">
+        <main class="container mt-4 content">
             {% block breadcrumbs %}{% endblock %}
 
             {% block flashes %}
