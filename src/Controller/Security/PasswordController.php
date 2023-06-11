@@ -42,6 +42,7 @@ class PasswordController extends AbstractController
             ]);
 
             if (!$user) {
+                //TODO: check valid username (email) and (or) subscribe user
                 return $this->redirectToRoute('app_check_email');
             }
 
