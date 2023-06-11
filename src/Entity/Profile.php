@@ -38,14 +38,10 @@ class Profile
     #[ORM\OneToMany(mappedBy: 'profile', targetEntity: Topic::class)]
     private $topics;
 
-    #[ORM\OneToMany(mappedBy: 'profile', targetEntity: Invite::class)]
-    private $invites;
-
     public function __construct()
     {
         $this->active = true;
         $this->topics = new ArrayCollection();
-        $this->invites = new ArrayCollection();
     }
 
     public function __toString()
@@ -151,36 +147,6 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($topic->getProfile() === $this) {
                 $topic->setProfile(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Invite>
-     */
-    public function getInvites(): Collection
-    {
-        return $this->invites;
-    }
-
-    public function addInvite(Invite $invite): self
-    {
-        if (!$this->invites->contains($invite)) {
-            $this->invites[] = $invite;
-            $invite->setProfile($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInvite(Invite $invite): self
-    {
-        if ($this->invites->removeElement($invite)) {
-            // set the owning side to null (unless already changed)
-            if ($invite->getProfile() === $this) {
-                $invite->setProfile(null);
             }
         }
 

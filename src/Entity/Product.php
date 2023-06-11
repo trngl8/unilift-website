@@ -47,8 +47,10 @@ class Product
     private Collection $products;
 
     #[ORM\Column(nullable: true)]
-    #[Assert\NotBlank]
     private ?int $fees = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $text = null;
 
     public function __construct()
     {
@@ -199,6 +201,18 @@ class Product
     public function setFees(?int $fees): self
     {
         $this->fees = $fees;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(?string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }
