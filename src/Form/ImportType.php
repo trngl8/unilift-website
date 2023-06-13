@@ -24,6 +24,9 @@ class ImportType extends AbstractType
                         'maxSize' => '1024k',
                         'mimeTypes' => [
                             'text/csv',
+                            'text/plain',
+                            'application/csv',
+                            'application/vnd.ms-excel',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid CSV document',
                     ])
