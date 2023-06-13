@@ -2,6 +2,22 @@
 {% extends 'default_layout.html.twig' %}
 
 {% block hero %}
+    <div class="container col-xxl-8 px-4 py-1">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{{ asset('build/images/logo0.png') }}" class="d-block mx-lg-auto img-fluid" alt="{{ app_domain }} {{ app_name }}" width="250" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Наша компанія</h1>
+                <p class="lead">
+                    Є автором та виробником універсального гідравлічного обладнання. Гідравлічне підйомне обладнання пройшло всі технічні випробування та відповідає міжнародним вимогам та технічним умовам експлуатації.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{{ path('app_contact') }}" type="button" class="btn btn-outline-danger btn-lg px-4">{{ 'action.details'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% if products is defined and products|length > 0 %}
     <div class="container content">
         {% for product in products %}

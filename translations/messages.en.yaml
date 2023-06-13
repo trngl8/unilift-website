@@ -4,6 +4,7 @@ action:
   home: Home
   order: Order
   save: Save
+  details: Details
 app:
   inbox: Inbox
   profile: Profile

@@ -4,6 +4,7 @@ action:
   home: На головну
   order: Залишити&nbsp;заявку
   save: Зберегти
+  details: Деталі
 app:
   inbox: Вхідні
   profile: Профіль
