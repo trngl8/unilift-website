@@ -193,9 +193,9 @@ class Product
         return $this;
     }
 
-    public function getFees(): ?int
+    public function getFees(): int
     {
-        return $this->fees;
+        return $this->fees ?? 0;
     }
 
     public function setFees(?int $fees): self
