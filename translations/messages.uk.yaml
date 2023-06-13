@@ -2,7 +2,8 @@ action:
   yes: Так
   no: Ні
   home: На головну
-  order: Залишити заявку
+  order: Залишити&nbsp;заявку
+  save: Зберегти
 app:
   inbox: Вхідні
   profile: Профіль

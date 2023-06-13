@@ -3,6 +3,7 @@ action:
   no: No
   home: Home
   order: Order
+  save: Save
 app:
   inbox: Inbox
   profile: Profile

@@ -41,8 +41,8 @@
                 {% if form_service is defined %}
                     {% set order_form = form_service.createOrderForm %}
                 <div id="orderForm">
-                    <button type="button" class="btn btn-outline-danger mx-2" data-bs-toggle="modal" data-bs-target="#orderModal">
-                        {{ "action.order"|trans }}
+                    <button type="button" class="btn btn-outline-danger mx-sm-2" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        {{ "action.order"|trans|raw }}
                     </button>
 
                     <!-- Modal -->

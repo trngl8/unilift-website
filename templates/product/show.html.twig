@@ -49,7 +49,7 @@
     </div>
 
     <div class="mb-5 mt-5">
-        <a href="" class="btn btn-outline-danger btn-lg"><i class="bi bi-app"></i> {{ 'action.order'|trans }}</a>
+        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-danger btn-lg"><i class="bi bi-app"></i> {{ 'action.order'|trans }}</a>
     </div>
 
 {#    <div class="accordion" id="accordionExample">#}

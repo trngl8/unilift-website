@@ -4,6 +4,7 @@ namespace App\Tests\Unit\EventListener;
 
 use App\Entity\User;
 use App\EventListener\UserLoginSuccessListener;
+use App\Repository\ProfileRepository;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -29,9 +30,9 @@ class UserLoginSuccessListenerTest extends TestCase
     /**
      * @dataProvider dataRedirects
      */
-    public function testRoleUserRedirects(string $role, string $route): void
+    public function testRoleUserRedirects(string $role): void
     {
-        $router = $this->createMock(RouterInterface::class);
+        $repo = $this->createMock(ProfileRepository::class);
         $authenticator = $this->createMock(AuthenticatorInterface::class);
         $passport = $this->createMock(Passport::class);
         $authenticatedToken = $this->createMock(TokenInterface::class);
@@ -43,22 +44,19 @@ class UserLoginSuccessListenerTest extends TestCase
         $user = new User();
         $user->setRoles([$role]);
         $passport->method('getUser')->willReturn($user);
-        $router->method('generate')->willReturn($route);
 
-        $listener = new UserLoginSuccessListener($router);
+        $listener = new UserLoginSuccessListener($repo);
         $this->dispatcher->addListener(LoginSuccessEvent::class, $listener);
         $event = new LoginSuccessEvent($authenticator, $passport, $authenticatedToken, $request, null, 'main');
 
         $this->dispatcher->dispatch($event, LoginSuccessEvent::class);
 
-        // TODO check correct response URL
-        //$this->assertInstanceOf(RedirectResponse::class, $event->getResponse());
         $this->assertNull($event->getResponse());
     }
 
     public function dataRedirects(): iterable
     {
-        yield 'User' => ['ROLE_USER', 'app_index'];
-        yield 'Admin' => ['ROLE_ADMIN', 'admin'];
+        yield 'User' => ['ROLE_USER'];
+        yield 'Admin' => ['ROLE_ADMIN'];
     }
 }

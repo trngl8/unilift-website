@@ -5,6 +5,7 @@ namespace App\Controller\EasyAdmin;
 use App\Entity\Order;
 use App\Entity\Page;
 use App\Entity\Product;
+use App\Entity\Profile;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
@@ -77,6 +78,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Pages', 'fa fa-file', Page::class),
 
             MenuItem::section('Users'),
+            MenuItem::linkToCrud('Profiles', 'fa fa-user-o', Profile::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
         ];
     }

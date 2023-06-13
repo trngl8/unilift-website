@@ -35,7 +35,7 @@ class ProfileControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $crawler = $client->submitForm('Submit', [
+        $crawler = $client->submitForm('Save', [
             'profile[name]' => 'test',
             'profile[email]' => 'test@test.com',
             'profile[locale]' => 'uk',
