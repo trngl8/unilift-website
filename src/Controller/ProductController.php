@@ -31,6 +31,10 @@ class ProductController extends AbstractController
     {
         $products = $products->findAll();
 
+        if(count($products) === 0) {
+            $this->addFlash('warning', 'No products found');
+        }
+
         return $this->render('product/index.html.twig', [
             'products' => $products,
         ]);
