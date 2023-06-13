@@ -40,4 +40,15 @@ class OrderService
 
         return $order;
     }
+
+    public function getOrder(string $uuid): Order
+    {
+        $order = $this->doctrine->getRepository(Order::class)->findOneBy(['uuid' => $uuid]);
+
+        if(!$order) {
+            throw new \RuntimeException(sprintf('Order %s not found', $order->getUuid()));
+        }
+
+        return $order;
+    }
 }

@@ -39,7 +39,7 @@ class OrderController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request) : Response
     {
-        $product = new Product();
+        $product = new Product(); //TODO : remove product?
         $orderRequest = new OrderProduct();
         $form = $this->createForm(OrderProductType::class, $orderRequest);
 
@@ -51,7 +51,7 @@ class OrderController extends AbstractController
 
             $this->addFlash('success', sprintf('%s flash.success.created', $order->getUuid()));
 
-            return $this->redirectToRoute('app_product_order_success', ['id' => $product->getId()]);
+            return $this->redirectToRoute('app_order_success', ['uuid' => $order->getUuid()]);
         }
 
         return $this->render('order/new.html.twig', [
@@ -101,6 +101,16 @@ class OrderController extends AbstractController
         }
 
         return $this->render('order/status.html.twig', [
+            'order' => $order,
+        ]);
+    }
+
+    #[Route('/{uuid}/success', name: 'success', methods: ['GET'])]
+    public function success(Uuid $uuid) : Response
+    {
+        $order = $this->orderService->getOrder($uuid);
+
+        return $this->render('order/success.html.twig', [
             'order' => $order,
         ]);
     }

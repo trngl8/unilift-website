@@ -10,6 +10,8 @@ use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
@@ -76,24 +78,24 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    #[Route('/info', name: 'app_info', methods: ['GET'])]
     public function info(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('default/info.html.twig');
     }
 
-    public function contact(): Response
+    #[Route('/contact', name: 'app_contact', methods: ['GET'])]
+    public function contact(string $page = 'contact'): Response
     {
-        $form = $this->createFormBuilder()
-            ->getForm();
-
-        $page = $this->pageRepository->findOneBy(['slug' => 'contact']);
+        $page = $this->pageRepository->findOneBy(['slug' => $page]);
 
         if(!$page) {
-            $this->addFlash('warning', sprintf('error.page_not_found %s', 'contact'));
+            throw new NotFoundHttpException('Page not found');
         }
 
         return $this->render('default/contact.html.twig', [
-            'form' => $form->createView(),
             'page' => $page,
         ]);
     }
