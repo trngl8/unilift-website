@@ -31,6 +31,7 @@ class PageCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->setRequired(false)->hideOnForm(),
+            IdField::new('slug')->setRequired(true),
             TextField::new('title'),
             TextareaField::new('description'),
             TextEditorField::new('text')->hideOnIndex(),

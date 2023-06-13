@@ -14,6 +14,8 @@ class Page
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 65)]
+    private ?string $slug = null;
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -69,6 +71,18 @@ class Page
     public function setText(?string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Button\LinkToRoute;
 use App\Form\OrderProductType;
+use App\Repository\PageRepository;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\DBAL\Exception\TableNotFoundException;
@@ -13,7 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
     public function __construct(
-        private readonly ProductRepository $productRepository)
+        private readonly ProductRepository $productRepository,
+        private readonly PageRepository $pageRepository)
     {
     }
 
@@ -84,8 +86,15 @@ class DefaultController extends AbstractController
         $form = $this->createFormBuilder()
             ->getForm();
 
+        $page = $this->pageRepository->findOneBy(['slug' => 'contact']);
+
+        if(!$page) {
+            $this->addFlash('warning', sprintf('error.page_not_found %s', 'contact'));
+        }
+
         return $this->render('default/contact.html.twig', [
             'form' => $form->createView(),
+            'page' => $page,
         ]);
     }
 }
