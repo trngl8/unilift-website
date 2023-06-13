@@ -24,7 +24,6 @@ default_index:
   path: /index
   controller: App\Controller\DefaultController::index
 
-
 app_inbox:
   path: /inbox
   controller: App\Controller\InboxController::inbox
