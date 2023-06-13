@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\Page;
 use App\Entity\Product;
 use App\Entity\Profile;
+use App\Entity\Topic;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
@@ -72,6 +73,8 @@ class DashboardController extends AbstractDashboardController
         return [
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
+            MenuItem::section('Tasks'),
+            MenuItem::linkToCrud('topics', 'fa fa-tasks', Topic::class),
             MenuItem::section('Orders'),
             MenuItem::linkToCrud('orders', 'fa fa-money', Order::class),
             MenuItem::linkToCrud('Products', 'fa fa-tags', Product::class),
