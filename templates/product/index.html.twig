@@ -28,7 +28,7 @@
                         <h2>{{ item.title }}</h2>
                         <p>{{ item.description }}</p>
                         <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-secondary">
-                            {{ 'action.order'|trans }}
+                            {{ 'action.order'|trans|raw }}
                         </a>
                     </div>
                 </div>
