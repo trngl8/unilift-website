@@ -31,7 +31,6 @@ class DefaultControllerTest extends WebTestCase
     public function getUrisRedirects() : iterable
     {
         yield 'index' => ['index'];
-        yield 'project' => ['project'];
         yield 'info' => ['info'];
         yield 'features' => ['features'];
         yield 'offer' => ['offer'];

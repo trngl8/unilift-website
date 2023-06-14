@@ -13,7 +13,7 @@ class ProfileFixtures extends Fixture
         $profile = new Profile();
         $profile->setEmail('admin@test.com');
         $profile->setName('Test');
-        $profile->setLocale('loc');
+        $profile->setLocale('en');
         $profile->setTimezone('Timezone\Continent');
         $manager->persist($profile);
         $manager->flush();

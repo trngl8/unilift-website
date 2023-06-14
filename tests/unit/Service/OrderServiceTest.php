@@ -2,13 +2,16 @@
 
 namespace App\Tests\Unit\Service;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Model\OrderProduct;
+use App\Repository\OrderRepository;
 use App\Service\OrderService;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Uid\Uuid;
 
 class OrderServiceTest extends TestCase
 {
@@ -61,5 +64,47 @@ class OrderServiceTest extends TestCase
         $this->assertEquals('test@test.com', $result->getDeliveryEmail());
         $this->assertEquals('UAH', $result->getCurrency());
         $this->assertEquals('pay', $result->getAction());
+    }
+
+    public function testGetOrderException(): void
+    {
+        $orderRepository = $this->createMock(OrderRepository::class);
+        $entityManager = $this->createMock(EntityManager::class);
+        $doctrine = $this->createMock(ManagerRegistry::class);
+        $doctrine->method('getManager')->willReturn($entityManager);
+        $doctrine->method('getRepository')->willReturn($orderRepository);
+
+        $logger = $this->createMock(LoggerInterface::class);
+
+        $service = new OrderService($doctrine, $logger);
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Order test not found');
+        $service->getOrder('test');
+    }
+
+    public function testGetOrderSuccess(): void
+    {
+        $order = new Order();
+        $order->setAmount(0);
+        $order->setCurrency('UAH');
+        $order->setDeliveryEmail('test@test.com');
+        $order->setDeliveryPhone('+380000000000');
+        $order->setDescription('Product Description');
+        $order->setStatus('new');
+        $order->setAction('pay');
+
+        $orderRepository = $this->createMock(OrderRepository::class);
+        $entityManager = $this->createMock(EntityManager::class);
+        $doctrine = $this->createMock(ManagerRegistry::class);
+        $orderRepository->method('findOneBy')->willReturn($order);
+        $doctrine->method('getManager')->willReturn($entityManager);
+        $doctrine->method('getRepository')->willReturn($orderRepository);
+
+        $logger = $this->createMock(LoggerInterface::class);
+
+        $service = new OrderService($doctrine, $logger);
+        $result = $service->getOrder('test');
+        $this->assertEquals('pay', $result->getAction());
+        $this->assertIsString($result->getUuid());
     }
 }

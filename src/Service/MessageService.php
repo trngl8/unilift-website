@@ -10,6 +10,9 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 
+/**
+ * @deprecated
+ */
 class MessageService implements ServiceInterface
 {
     CONST MESSAGES_DB = 'messages.db';

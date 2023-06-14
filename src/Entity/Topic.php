@@ -32,9 +32,6 @@ class Topic
     #[Assert\NotBlank]
     private $type;
 
-    #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Answer::class)]
-    private $answers;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $branch;
 

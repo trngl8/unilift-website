@@ -29,6 +29,8 @@ class OrderService
         $order->setAmount($product->getFees());
         $order->setCurrency('UAH');
 
+        //TODO: send email to customer
+        //TODO: send notify message to admin
         try {
             $entityManager = $this->doctrine->getManager();
             $entityManager->persist($order);
@@ -46,7 +48,7 @@ class OrderService
         $order = $this->doctrine->getRepository(Order::class)->findOneBy(['uuid' => $uuid]);
 
         if(!$order) {
-            throw new \RuntimeException(sprintf('Order %s not found', $order->getUuid()));
+            throw new \RuntimeException(sprintf('Order %s not found', $uuid));
         }
 
         return $order;
