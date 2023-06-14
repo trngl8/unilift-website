@@ -114,15 +114,6 @@ class Profile
         return $this;
     }
 
-    public function getPublicProperties(): array
-    {
-        return [
-            'name' => $this->getName(),
-            'locale' => $this->getLocale(),
-            'timezone' => $this->getTimezone(),
-        ];
-    }
-
     /**
      * @return Collection<int, Topic>
      */

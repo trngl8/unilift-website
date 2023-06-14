@@ -4,13 +4,13 @@ namespace App\Tests\Acceptance\User;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class OfferControllerTest extends WebTestCase
+class ProductControllerTest extends WebTestCase
 {
-    public function testIndex() : void
+    public function testProductSuccess() : void
     {
         $client = static::createClient();
         $client->followRedirects();
-        $client->request('GET', '/offer');
+        $client->request('GET', '/product');
 
         $this->assertResponseIsSuccessful();
     }

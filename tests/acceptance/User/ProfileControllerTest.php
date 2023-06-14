@@ -21,6 +21,20 @@ class ProfileControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testProfileCreateSuccess(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByUsername('admin@test.com');
+
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/profile/new');
+
+        $this->assertResponseIsSuccessful();
+    }
+
     public function testEditProfileSuccess(): void
     {
         $client = static::createClient();

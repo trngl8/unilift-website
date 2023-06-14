@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Profile;
 use App\Form\ProfileType;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\ProfileRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository as AbstractRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,14 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    private $doctrine;
+    private AbstractRepository $repository;
 
-    private $repository;
-
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ProfileRepository $profileRepository)
     {
-        $this->doctrine = $doctrine;
-        $this->repository = $this->doctrine->getRepository(Profile::class);
+        $this->repository = $profileRepository;
     }
 
     #[Route('/profile', name: 'app_profile')]
@@ -32,11 +30,9 @@ class ProfileController extends AbstractController
         $profile = $this->repository->findOneBy(['email' => $user->getUserIdentifier()]);
 
         if(!$profile) {
-            // TODO: or 404 ?
-            // TODO: this message throws on the bottom of the hero
-            $this->addFlash('warning', 'no_active_profile');
+            $this->addFlash('warning', 'flash.warning.not_found');
 
-            return $this->redirectToRoute('app_profile_edit');
+            return $this->redirectToRoute('app_profile_new');
         }
 
         return $this->render('profile/index.html.twig', [
@@ -44,8 +40,8 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/edit', name: 'app_profile_edit')]
-    public function edit(Request $request): Response
+    #[Route('/profile/new', name: 'app_profile_new')]
+    public function new(Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -64,10 +60,42 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->doctrine->getManager();
             $profile->setEmail($user->getUserIdentifier());
-            $entityManager->persist($profile);
-            $entityManager->flush();
+            $this->repository->add($profile);
+
+            $this->addFlash('success', 'flash.success.profile_created');
+
+            return $this->redirectToRoute('app_profile');
+        }
+
+        return $this->render('profile/edit.html.twig', [
+            'form' => $form->createView(),
+            'profile' => $profile,
+        ]);
+    }
+
+    #[Route('/profile/edit', name: 'app_profile_edit')]
+    public function edit(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $user = $this->getUser();
+
+        $profile = $this->repository->findOneBy(['email' => $user->getUserIdentifier()]);
+
+        if(!$profile) {
+            $this->addFlash('warning', 'flash.warning.not_found');
+
+            return $this->redirectToRoute('app_profile_new');
+        }
+
+        $form = $this->createForm(ProfileType::class, $profile);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $profile->setEmail($user->getUserIdentifier()); //TODO: check if this is needed
+            $this->repository->add($profile);
 
             $this->addFlash('success', 'flash.success.profile_updated');
 
