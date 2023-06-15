@@ -1,12 +1,21 @@
 {% extends 'layout.html.twig' %}
 
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ page.title }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
 {% block main %}
     <h1 class="mb-4">{{ page.title }}</h1>
 
     <div class="row">
 
-        <div class="col-md-6">
-            <p>{{ page.description }}</p>
+        <div class="col-md-8">
+{#            <p>{{ page.description }}</p>#}
             <div>{{ page.text|raw }}</div>
         </div>
     </div>

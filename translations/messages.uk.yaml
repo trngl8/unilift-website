@@ -5,6 +5,7 @@ action:
   order: Залишити&nbsp;заявку
   save: Зберегти
   details: Деталі
+  send: Відправити
 app:
   inbox: Вхідні
   profile: Профіль

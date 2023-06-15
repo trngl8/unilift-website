@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'brcmbs.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
             <li class="breadcrumb-item"><a href="{{ path('app_product_index') }}">{{ 'title.products'|trans }}</a></li>
             <li class="breadcrumb-item" aria-current="page">{{ item.title }}</li>
         </ol>
@@ -16,40 +16,8 @@
 {#    <p>{{ item.description }}</p>#}
     <p>{{ item.text|raw }}</p>
 
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        {% for offer in offers %}
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm border-{{ offer.border }}">
-                    <div class="card-header py-3  text-bg-{{ offer.border }} border-{{ offer.border }}">
-                        <h4 class="my-0 fw-normal">{{ offer.title }}</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">{{ offer.amount }}{{ offer.currency }}<small class="text-muted fw-light">/mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>120 minutes video</li>
-                            <li>30 examples</li>
-                            <li>10 home tasks</li>
-                            <li>ai support</li>
-                        </ul>
-                        {% if offer.active %}
-                            {% if offer.border %}
-                                <a href="{{ path('app_offer_order', {"id": offer.id}) }}" class="w-100 btn btn-lg btn-{{ offer.border }}">Join</a>
-                            {% else %}
-                                <a href="{{ path('app_offer_order', {"id": offer.id}) }}" class="w-100 btn btn-lg btn-outline-primary">Join</a>
-                            {% endif %}
-                        {% elseif offer.private %}
-                            <a href="{{ path('app_contact') }}" class="w-100 btn btn-lg btn-dark">Contact us</a>
-                        {% else %}
-                            <a href="{{ path('app_contact') }}" class="w-100 btn btn-lg btn-outline-secondary}">Contact us</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
     <div class="mb-5 mt-5">
-        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-danger btn-lg"><i class="bi bi-app"></i> {{ 'action.order'|trans|raw }}</a>
+        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-danger btn-lg">{{ 'action.order'|trans|raw }}</a>
     </div>
 
 {#    <div class="accordion" id="accordionExample">#}

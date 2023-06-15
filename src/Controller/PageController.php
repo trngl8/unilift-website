@@ -13,14 +13,14 @@ use Doctrine\Persistence\ManagerRegistry;
 class PageController extends AbstractController
 {
     private ManagerRegistry $doctrine;
+
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->doctrine = $doctrine;
     }
 
-
     #[Route('/{slug}', name: 'show', methods: ['GET', 'HEAD'] )]
-    public function show(string $slug, ): Response
+    public function show(string $slug): Response
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['slug' => $slug]);
 
@@ -29,7 +29,7 @@ class PageController extends AbstractController
         }
 
         return $this->render('page/show.html.twig', [
-            'item' => $page
+            'page' => $page
         ]);
     }
 }

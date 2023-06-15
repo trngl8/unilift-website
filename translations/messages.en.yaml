@@ -5,6 +5,7 @@ action:
   order: Order
   save: Save
   details: Details
+  send: Send
 app:
   inbox: Inbox
   profile: Profile

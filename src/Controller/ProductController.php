@@ -5,9 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\OrderProductType;
 use App\Model\OrderProduct;
-use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
-use App\Service\OfferService;
 use App\Service\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: "/product", name: "app_product_")]
 class ProductController extends AbstractController
 {
-    private $offerService;
-
     private $orderService;
-    public function __construct(OfferService $offerService, OrderService $orderService)
+    public function __construct(OrderService $orderService)
     {
-        $this->offerService = $offerService;
         $this->orderService = $orderService;
     }
 
@@ -41,17 +36,12 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{alias}/show', name: 'show', methods: ['GET'])]
-    public function payment(string $alias, ProductRepository $products, OfferRepository $offerRepository) : Response
+    public function show(string $alias, ProductRepository $products): Response
     {
         $product = $products->findOneBy(['id' => $alias]);
 
-        $offers = $this->offerService->getOffers($product);
-
-        $offers = $offerRepository->findBy([], ['id' => 'ASC'], 1, 0);
-
         return $this->render('product/show.html.twig', [
             'item' => $product,
-            'offers' => $offers
         ]);
     }
 

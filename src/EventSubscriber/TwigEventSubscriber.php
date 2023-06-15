@@ -51,36 +51,36 @@ class TwigEventSubscriber implements EventSubscriberInterface
             ],
             'lift' => [
                 'title' => 'Ліфти',
-                'url' => '/product',
+                'path' => '#',
                 'items' => [
                     [
                         'alias' => 'cottage',
-                        'path' => '/pages/cottage',
-                        'route' => 'app_pages_show',
+                        'path' => '/product/cottage',
+                        'route' => 'app_product_show',
                         'title' => 'Котетджний ліфт',
                     ],
                     [
                         'alias' => 'passenger',
-                        'path' => '/pages/passenger',
-                        'route' => 'app_pages_show',
+                        'path' => '/product/passenger',
+                        'route' => 'app_product_show',
                         'title' => 'Пасажирський ліфт для ЖК',
                     ],
                     [
                         'alias' => 'healthy',
-                        'path' => '/pages/healthy',
-                        'route' => 'app_pages_show',
+                        'path' => '/product/healthy',
+                        'route' => 'app_product_show',
                         'title' => 'Лікарняний ліфт для медичних закладів',
                     ],
                     [
                         'alias' => 'avto',
-                        'path' => '/pages/avto',
-                        'route' => 'app_pages_show',
+                        'path' => '/product/avto',
+                        'route' => 'app_product_show',
                         'title' => 'Автомобільний ліфт',
                     ],
                     [
                         'alias' => 'low',
-                        'path' => '/pages/low-weight',
-                        'route' => 'app_pages_show',
+                        'path' => '/product/low-weight',
+                        'route' => 'app_product_show',
                         'title' => 'Маловантажний ліфт',
                     ],
                 ]
@@ -98,12 +98,12 @@ class TwigEventSubscriber implements EventSubscriberInterface
             'escalators' => [
                 'title' => 'Ескалатори',
                 'route' => 'app_pages_show',
-                'url' => '/pages/escalators',
+                'path' => '/pages/escalators',
             ],
             'travolators' => [
                 'title' => 'Траволатори',
                 'route' => 'app_pages_show',
-                'url' => '/pages/travolators',
+                'path' => '/pages/travolators',
             ],
         ];
 

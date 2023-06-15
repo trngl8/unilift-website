@@ -54,7 +54,7 @@
                         </ul>
                     </div>
                 {% else %}
-                    <a href="#" class="btn btn-menu">{{ menu_item.title }}</a>
+                    <a href="{{ menu_item.path }}" class="btn btn-menu">{{ menu_item.title }}</a>
                 {% endif %}
             {% endfor %}
         </div>

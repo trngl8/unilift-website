@@ -28,11 +28,11 @@
 {#                </svg>#}
             </div>
             <div class="col-md-8">
-                <h1 class="display-5 fw-bold lh-1 mb-3"> {{ product.title }}</h1>
+                <h3 class="display-8 lh-1 mb-3"> {{ product.title }}</h3>
                 <p class="lead"> {{ product.description }}</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <form action="{{ path('app_product_order', {id:product.id}) }}" method="post">
-                        <button type="submit" class="btn btn-lg btn-outline-primary">{{ 'action.order'|trans|raw }}</button>
+                        <button type="submit" class="btn btn-outline-secondary">{{ 'action.order'|trans|raw }}</button>
                     </form>
 
                     {% if buttons is defined and buttons|length > 0 %}
