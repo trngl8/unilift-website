@@ -21,7 +21,8 @@ class ProductCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Product')
+            ->setEntityLabelInSingular('Продукт')
+            ->setEntityLabelInPlural('Продукти')
             ->showEntityActionsInlined()
             ;
     }

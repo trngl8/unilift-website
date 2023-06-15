@@ -18,8 +18,8 @@ class OrderCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Order')
-            ->setEntityLabelInPlural('Orders')
+            ->setEntityLabelInSingular('Замовлення')
+            ->setEntityLabelInPlural('Замовлення')
             ->showEntityActionsInlined()
             ;
     }

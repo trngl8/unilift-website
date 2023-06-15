@@ -25,6 +25,9 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $text = null;
 
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $filename;
+
     #[ORM\Column]
     private ?bool $active = null;
 
@@ -95,6 +98,18 @@ class Page
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
 
         return $this;
     }

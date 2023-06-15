@@ -22,7 +22,8 @@ class ProfileCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Profile')
+            ->setEntityLabelInSingular('Профілі')
+            ->setEntityLabelInPlural('Профіль')
             ->showEntityActionsInlined()
             ;
     }

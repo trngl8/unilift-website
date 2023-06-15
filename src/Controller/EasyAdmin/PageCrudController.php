@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,7 +23,8 @@ class PageCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Page')
+            ->setEntityLabelInSingular('Сторінка')
+            ->setEntityLabelInPlural('Сторінки')
             ->showEntityActionsInlined()
             ;
     }
@@ -35,6 +37,7 @@ class PageCrudController extends AbstractCrudController
             TextField::new('title'),
             TextareaField::new('description'),
             TextEditorField::new('text')->hideOnIndex(),
+            ImageField::new('filename')->setUploadDir('public/upload')->setBasePath('upload')->setRequired(false),
             BooleanField::new('active'),
         ];
     }

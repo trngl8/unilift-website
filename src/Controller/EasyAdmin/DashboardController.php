@@ -71,18 +71,19 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linkToDashboard('Головна панель', 'fa fa-home'),
 
-            MenuItem::section('Tasks'),
-            MenuItem::linkToCrud('topics', 'fa fa-tasks', Topic::class),
-            MenuItem::section('Orders'),
-            MenuItem::linkToCrud('orders', 'fa fa-money', Order::class),
-            MenuItem::linkToCrud('Products', 'fa fa-tags', Product::class),
-            MenuItem::linkToCrud('Pages', 'fa fa-file', Page::class),
+            MenuItem::section('Задачі'),
+            MenuItem::linkToCrud('Задачі', 'fa fa-tasks', Topic::class),
 
-            MenuItem::section('Users'),
-            MenuItem::linkToCrud('Profiles', 'fa fa-user-o', Profile::class),
-            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
+            MenuItem::section('Наповнення'),
+            MenuItem::linkToCrud('Замовлення', 'fa fa-money', Order::class),
+            MenuItem::linkToCrud('Продукти', 'fa fa-tags', Product::class),
+            MenuItem::linkToCrud('Сторінки', 'fa fa-file', Page::class),
+
+            MenuItem::section('Додатково'),
+            MenuItem::linkToCrud('Профілі', 'fa fa-user-o', Profile::class),
+            MenuItem::linkToCrud('Користувачі', 'fa fa-user', User::class),
         ];
     }
 }

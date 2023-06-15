@@ -19,7 +19,8 @@ class TopicCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Topic')
+            ->setEntityLabelInSingular('Задачa')
+            ->setEntityLabelInPlural('Задачі')
             ->showEntityActionsInlined()
             ;
     }

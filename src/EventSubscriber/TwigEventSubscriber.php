@@ -46,62 +46,64 @@ class TwigEventSubscriber implements EventSubscriberInterface
         $topMenu = [
             'index' => [
                 'title' => 'Про нас',
-                'route' => 'default_index',
+                'route' => 'app_pages_show',
                 'path' => '/pages/about',
-                'url' => '/index',
             ],
             'lift' => [
                 'title' => 'Ліфти',
-                'route' => 'app_product_index',
-                'params' => ['alias' => 'lift'],
                 'url' => '/product',
                 'items' => [
                     [
                         'alias' => 'cottage',
                         'path' => '/pages/cottage',
+                        'route' => 'app_pages_show',
                         'title' => 'Котетджний ліфт',
                     ],
                     [
                         'alias' => 'passenger',
                         'path' => '/pages/passenger',
+                        'route' => 'app_pages_show',
                         'title' => 'Пасажирський ліфт для ЖК',
                     ],
                     [
                         'alias' => 'healthy',
                         'path' => '/pages/healthy',
+                        'route' => 'app_pages_show',
                         'title' => 'Лікарняний ліфт для медичних закладів',
                     ],
                     [
                         'alias' => 'avto',
                         'path' => '/pages/avto',
+                        'route' => 'app_pages_show',
                         'title' => 'Автомобільний ліфт',
                     ],
                     [
                         'alias' => 'low',
                         'path' => '/pages/low-weight',
+                        'route' => 'app_pages_show',
                         'title' => 'Маловантажний ліфт',
                     ],
                 ]
             ],
             'low-mobile' => [
                 'title' => 'Підйомники для інвалідів',
-                'route' => 'app_project_index',
-                'url' => '/project',
+                'route' => 'app_pages_show',
+                'path' => '/pages/low-mobile',
             ],
             'platform' => [
                 'title' => 'Підйомні платформи',
-                'route' => 'app_offer_index',
-                'url' => '/offer',
+                'route' => 'app_pages_show',
+                'path' => '/pages/platform',
             ],
             'escalators' => [
                 'title' => 'Ескалатори',
-                'route' => 'topic_index',
-                'url' => '/topic',
+                'route' => 'app_pages_show',
+                'url' => '/pages/escalators',
             ],
             'travolators' => [
                 'title' => 'Траволатори',
-                'route' => 'topic_index',
-                'url' => '/topic',
+                'route' => 'app_pages_show',
+                'url' => '/pages/travolators',
             ],
         ];
 
