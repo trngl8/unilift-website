@@ -95,7 +95,7 @@ class DefaultController extends AbstractController
             throw new NotFoundHttpException('Page not found');
         }
 
-        return $this->render('default/contact.html.twig', [
+        return $this->render('page/show.html.twig', [
             'page' => $page,
         ]);
     }
