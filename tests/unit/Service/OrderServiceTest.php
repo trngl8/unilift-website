@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Model\OrderProduct;
 use App\Repository\OrderRepository;
+use App\Service\MailerService;
 use App\Service\OrderService;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
@@ -30,10 +31,11 @@ class OrderServiceTest extends TestCase
         $entityManager->method('flush')->willThrowException(new \Exception());
         $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine->method('getManager')->willReturn($entityManager);
+        $mailerService = $this->createMock(MailerService::class);
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $service = new OrderService($doctrine, $logger);
+        $service = new OrderService($doctrine, $logger, $mailerService);
         $this->expectException(\RuntimeException::class);
         $service->orderProduct($product, $orderProduct);
     }
@@ -52,10 +54,11 @@ class OrderServiceTest extends TestCase
         $entityManager = $this->createMock(EntityManager::class);
         $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine->method('getManager')->willReturn($entityManager);
+        $mailerService = $this->createMock(MailerService::class);
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $service = new OrderService($doctrine, $logger);
+        $service = new OrderService($doctrine, $logger, $mailerService);
         $result = $service->orderProduct($product, $orderProduct);
 
         $this->assertEquals('new', $result->getStatus());
@@ -73,10 +76,11 @@ class OrderServiceTest extends TestCase
         $doctrine = $this->createMock(ManagerRegistry::class);
         $doctrine->method('getManager')->willReturn($entityManager);
         $doctrine->method('getRepository')->willReturn($orderRepository);
+        $mailerService = $this->createMock(MailerService::class);
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $service = new OrderService($doctrine, $logger);
+        $service = new OrderService($doctrine, $logger, $mailerService);
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Order test not found');
         $service->getOrder('test');
@@ -99,10 +103,11 @@ class OrderServiceTest extends TestCase
         $orderRepository->method('findOneBy')->willReturn($order);
         $doctrine->method('getManager')->willReturn($entityManager);
         $doctrine->method('getRepository')->willReturn($orderRepository);
+        $mailerService = $this->createMock(MailerService::class);
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $service = new OrderService($doctrine, $logger);
+        $service = new OrderService($doctrine, $logger, $mailerService);
         $result = $service->getOrder('test');
         $this->assertEquals('pay', $result->getAction());
         $this->assertIsString($result->getUuid());

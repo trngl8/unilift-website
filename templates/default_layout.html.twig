@@ -1,6 +1,7 @@
 {% extends 'base_layout.html.twig' %}
 
 {% block add_stylesheets %}
+    {{ parent() }}
     <style>
     .content {
         background-image: url("{{ asset('build/images/bg.svg') }}");

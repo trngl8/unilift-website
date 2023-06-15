@@ -10,12 +10,57 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
 {% endblock %}
 
+{% block add_stylesheets %}
+    <style>
+    .btn-menu {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #FF010B;
+        --bs-btn-border-color: #FF010B;
+        --bs-btn-hover-color: #FF010B;
+        --bs-btn-hover-bg: #F5F2F2;
+        --bs-btn-hover-border-color: #F5F2F2;
+        --bs-btn-focus-shadow-rgb: 225,83,97;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #b02a37;
+        --bs-btn-active-border-color: #a52834;
+        --bs-btn-active-shadow: inset 0 0px 0px rgba(0,0,0,.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #FF010B;
+        --bs-btn-disabled-border-color: #FF010B;
+        --bs-btn-border-radius: 0;
+    }
+    </style>
+{% endblock %}
+
 {% block modal %}{% endblock %}
 
 {% block body %}
 {% block extended_navbar %}{% endblock %}
 {% block simple_navbar %}{% endblock %}
-{% block top_menu %}{% endblock %}
+{% block top_menu %}
+<div class="container-fluid" style="background: #FF010B">
+    <div class="container">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            {% for menu_item in top_menu %}
+                {% if menu_item.items is defined and menu_item.items|length > 0 %}
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn btn-menu dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ menu_item.title }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for item in menu_item.items %}
+                            <li><a class="dropdown-item" href="{{ item.path }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="#" class="btn btn-menu">{{ menu_item.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
 <main>
     {% block main_body %}
         {% block main %}

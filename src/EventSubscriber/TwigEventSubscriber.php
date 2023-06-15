@@ -45,27 +45,61 @@ class TwigEventSubscriber implements EventSubscriberInterface
 
         $topMenu = [
             'index' => [
-                'title' => 'menu.home',
+                'title' => 'Про нас',
                 'route' => 'default_index',
+                'path' => '/pages/about',
                 'url' => '/index',
             ],
-            'products' => [
-                'title' => 'menu.products',
+            'lift' => [
+                'title' => 'Ліфти',
                 'route' => 'app_product_index',
+                'params' => ['alias' => 'lift'],
                 'url' => '/product',
+                'items' => [
+                    [
+                        'alias' => 'cottage',
+                        'path' => '/pages/cottage',
+                        'title' => 'Котетджний ліфт',
+                    ],
+                    [
+                        'alias' => 'passenger',
+                        'path' => '/pages/passenger',
+                        'title' => 'Пасажирський ліфт для ЖК',
+                    ],
+                    [
+                        'alias' => 'healthy',
+                        'path' => '/pages/healthy',
+                        'title' => 'Лікарняний ліфт для медичних закладів',
+                    ],
+                    [
+                        'alias' => 'avto',
+                        'path' => '/pages/avto',
+                        'title' => 'Автомобільний ліфт',
+                    ],
+                    [
+                        'alias' => 'low',
+                        'path' => '/pages/low-weight',
+                        'title' => 'Маловантажний ліфт',
+                    ],
+                ]
             ],
-            'projects' => [
-                'title' => 'menu.projects',
+            'low-mobile' => [
+                'title' => 'Підйомники для інвалідів',
                 'route' => 'app_project_index',
                 'url' => '/project',
             ],
-            'offers' => [
-                'title' => 'menu.offers',
+            'platform' => [
+                'title' => 'Підйомні платформи',
                 'route' => 'app_offer_index',
                 'url' => '/offer',
             ],
-            'features' => [
-                'title' => 'menu.features',
+            'escalators' => [
+                'title' => 'Ескалатори',
+                'route' => 'topic_index',
+                'url' => '/topic',
+            ],
+            'travolators' => [
+                'title' => 'Траволатори',
                 'route' => 'topic_index',
                 'url' => '/topic',
             ],

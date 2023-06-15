@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\User;
+use App\Model\OrderProduct;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
@@ -13,9 +14,9 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 class MailerService
 {
     public function __construct(
-        private readonly MailerInterface $mailer,
         private readonly string $adminEmail,
         private readonly string $appName,
+        private readonly MailerInterface $mailer,
         private readonly VerifyEmailHelperInterface $verifyEmailHelper,
         private readonly TranslatorInterface $translator,
     ) {
@@ -62,5 +63,35 @@ class MailerService
 
         //TODO: check transport exception
         $this->mailer->send($email);
+    }
+
+    public function sendOrderCreated(OrderProduct $orderProduct): void
+    {
+        //TODO: set Order parameter
+        $email = (new TemplatedEmail())
+            ->from(new Address($this->adminEmail, $this->appName))
+            ->to($orderProduct->email)
+            ->subject($this->translator->trans('email.product.order'))
+            ->htmlTemplate('email/order_product.html.twig'); //TODO create template
+
+        //TODO: check transport exception
+        //$this->mailer->send($email);
+    }
+
+    public function notifyAdmin(OrderProduct $orderProduct): void
+    {
+        //TODO: set Order parameter
+        $email = (new TemplatedEmail())
+            ->from(new Address($this->adminEmail, $this->appName))
+            ->to($this->adminEmail)
+            ->subject($this->translator->trans('email.notify.order'))
+            ->htmlTemplate('email/new_order.html.twig') //TODO create template
+            ->context([
+                'order' => $orderProduct,
+            ])
+        ;
+
+        //TODO: check transport exception
+        //$this->mailer->send($email);
     }
 }

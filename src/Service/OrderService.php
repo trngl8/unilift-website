@@ -14,10 +14,13 @@ class OrderService
 
     private LoggerInterface $logger;
 
-    public function __construct(ManagerRegistry $doctrine, LoggerInterface $logger)
+    private $mailerService;
+
+    public function __construct(ManagerRegistry $doctrine, LoggerInterface $logger, MailerService $mailerService)
     {
         $this->doctrine = $doctrine;
         $this->logger = $logger;
+        $this->mailerService = $mailerService;
     }
 
     public function orderProduct(Product $product, OrderProduct $orderRequest): Order
@@ -29,14 +32,17 @@ class OrderService
         $order->setAmount($product->getFees());
         $order->setCurrency('UAH');
 
-        //TODO: send email to customer
-        //TODO: send notify message to admin
         try {
             $entityManager = $this->doctrine->getManager();
             $entityManager->persist($order);
             $entityManager->flush();
+
+            $this->mailerService->sendOrderCreated($orderRequest);
+            $this->mailerService->notifyAdmin($orderRequest);
+
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
+            //TODO: escalate to admin
             throw new \RuntimeException('Order not created');
         }
 

@@ -58,16 +58,15 @@ class ProductController extends AbstractController
     #[Route('/{id}/order', name: 'order', methods: ['GET', 'POST'])]
     public function order(Product $product, Request $request): Response
     {
-        $orderRequest = new OrderProduct(); //TODO: from Product
-        $form = $this->createForm(OrderProductType::class, $orderRequest);
+        $form = $this->createForm(OrderProductType::class, new OrderProduct());
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
 
-            $order = $this->orderService->orderProduct($product, $orderRequest);
+            $order = $this->orderService->orderProduct($product, $form->getData());
 
-            $this->addFlash('success', sprintf('%s flash.success.created', $order->getUuid()));
+            $this->addFlash('success', sprintf('Order %s flash.success.created', $order->getUuid()));
 
             return $this->redirectToRoute('app_order_success', ['uuid' => $order->getUuid()]);
         }
