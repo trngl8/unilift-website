@@ -1,26 +1,9 @@
-#deprecated
-app_default:
-  path: /
-  controller: App\Controller\DefaultController::default
-
 app_home:
   path: /
   controller: App\Controller\DefaultController::default
 
-app_home_default:
-  path: /home
-  controller: App\Controller\DefaultController::home
-
 #deprecated
 app_index:
-  path: /index
-  controller: App\Controller\DefaultController::index
-
-default:
-  path: /
-  controller: App\Controller\DefaultController::default
-
-default_index:
   path: /index
   controller: App\Controller\DefaultController::index
 

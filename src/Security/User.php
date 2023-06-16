@@ -4,6 +4,9 @@ namespace App\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @deprecated
+ */
 class User implements UserInterface
 {
     private $username;

@@ -27,7 +27,7 @@ class UserChangePasswordCommand extends Command
 
     public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
     {
-        parent::__construct($this::$defaultName);
+        parent::__construct();
         $this->em = $em;
         //TODO: use UserService instead of passwordHasher
         $this->passwordHasher = $passwordHasher;

@@ -21,11 +21,6 @@ class DefaultController extends AbstractController
     {
     }
 
-    public function home(): Response
-    {
-        return$this->render('default/home.html.twig');
-    }
-
     public function default(): Response
     {
         $user = $this->getUser();
@@ -45,8 +40,6 @@ class DefaultController extends AbstractController
 
     public function index(): Response
     {
-        $form = $this->createForm(OrderProductType::class);
-
         try {
             $products = $this->productRepository->findMain();
         } catch (TableNotFoundException $e) {
@@ -74,16 +67,7 @@ class DefaultController extends AbstractController
         return$this->render('default/index.html.twig', [
             'buttons' => $buttons,
             'products' => $products,
-            //'order_form' => $form->createView(),
         ]);
-    }
-
-    #[Route('/info', name: 'app_info', methods: ['GET'])]
-    public function info(): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        return $this->render('default/info.html.twig');
     }
 
     #[Route('/contact', name: 'app_contact', methods: ['GET'])]
