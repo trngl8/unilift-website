@@ -19,9 +19,6 @@ class Order
     #[ORM\Column(type: 'uuid')]
     private $uuid;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?Offer $offer = null;
-
     #[ORM\Column(length: 32)]
     private ?string $action = null;
 
@@ -59,18 +56,6 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getOffer(): ?Offer
-    {
-        return $this->offer;
-    }
-
-    public function setOffer(?Offer $offer): self
-    {
-        $this->offer = $offer;
-
-        return $this;
     }
 
     public function getAction(): ?string

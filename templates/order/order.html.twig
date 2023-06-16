@@ -13,7 +13,6 @@
                     {{ order.title }}
                     {{ order.amount }}
                     {{ order.currency }}
-                    {{ offer.createdAt|date('Y-m-d') }} {# TODO choose format in the settings #}
                 </div>
             </div>
             {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}

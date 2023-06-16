@@ -4,44 +4,28 @@ namespace App\Service;
 
 use App\Entity\Offer;
 use App\Entity\Order;
-use App\Entity\Product;
-use App\Model\OrderProduct;
 use App\Model\OrderRequest;
-use App\Repository\OfferRepository;
 use App\Repository\OrderRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
 
 class OfferService
 {
-    private $offers;
     private $orders;
 
     private $paymentService;
 
     private $doctrine;
-    public function __construct(ManagerRegistry $doctrine, OfferRepository $offers, OrderRepository $orders, LiqpayService $paymentService)
+    public function __construct(ManagerRegistry $doctrine, OrderRepository $orders, LiqpayService $paymentService)
     {
         $this->paymentService = $paymentService;
-        $this->offers = $offers;
         $this->orders = $orders;
         $this->doctrine = $doctrine;
-    }
-
-    public function getOffer(int $id): Offer
-    {
-        return $this->offers->find($id);
     }
 
     public function getOrder(Uuid $id): Order
     {
         return $this->orders->findOneBy(['uuid' => $id]);
-    }
-
-    public function getOffers(Product $product = null) : array
-    {
-        $criteria = ['active' => true];
-        return $this->offers->findBy($criteria, ['amount' => 'ASC'], 3);
     }
 
     public function getOrders(string $key, string $identifiers) : array
