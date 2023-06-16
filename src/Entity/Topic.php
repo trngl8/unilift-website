@@ -41,9 +41,6 @@ class Topic
     #[ORM\Column(type: 'integer', options: ["default" => 0])]
     private $priority;
 
-    #[ORM\ManyToOne(inversedBy: 'topics')]
-    private ?Project $project = null;
-
     #[ORM\ManyToOne]
     private ?Product $product = null;
 
@@ -148,18 +145,6 @@ class Topic
     public function setPriority(int $priority): self
     {
         $this->priority = $priority;
-
-        return $this;
-    }
-
-    public function getProject(): ?Project
-    {
-        return $this->project;
-    }
-
-    public function setProject(?Project $project): self
-    {
-        $this->project = $project;
 
         return $this;
     }

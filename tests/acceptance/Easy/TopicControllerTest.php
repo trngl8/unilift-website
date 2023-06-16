@@ -2,11 +2,18 @@
 
 namespace App\Tests\Acceptance\Easy;
 
+use App\Controller\EasyAdmin\TopicCrudController;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TopicControllerTest extends WebTestCase
 {
+    public function testEntity(): void
+    {
+        $target = new TopicCrudController();
+        $this->assertEquals('App\Entity\Topic', $target->getEntityFqcn());
+    }
+
     public function testTopicSuccess(): void
     {
         $client = static::createClient();

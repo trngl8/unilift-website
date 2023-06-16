@@ -20,21 +20,9 @@ class TopicAdminType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('project')
             ->add('type', ChoiceType::class, ['choices' => [
                 'task' => 'task',
-//                'filter.filters' => 'filters',
-//                'filter.external' => 'external',
-//                'filter.controller' => 'controller',
-//                'filter.test' => 'test',
-//                'filter.dashboard' => 'dashboard',
-//                'filter.security' => 'security',
-//                'filter.admin' => 'admin',
-//                'filter.logger' => 'logger',
-//                'filter.migration' => 'migration',
             ]])
-//            ->add('product')
-
             ->add('title')
             ->add('description', TextareaType::class)
             ->add('branch', TextType::class)

@@ -15,7 +15,15 @@ class PageFixtures extends Fixture
         $page->setDescription('Description');
         $page->setSlug('test');
         $page->setActive(true);
+
+        $contact = new Page();
+        $contact->setTitle('Test');
+        $contact->setDescription('Description');
+        $contact->setSlug('contact');
+        $contact->setActive(true);
+
         $manager->persist($page);
+        $manager->persist($contact);
         $manager->flush();
     }
 }

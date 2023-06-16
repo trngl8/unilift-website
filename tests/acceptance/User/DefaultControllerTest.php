@@ -2,10 +2,39 @@
 
 namespace App\Tests\Acceptance\User;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
+    public function testDefaultSuccess(): void
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByUsername('user@test.com');
+
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/index');
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testContactSuccess(): void
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByUsername('user@test.com');
+
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/contact');
+        $this->assertResponseIsSuccessful();
+    }
+
     public function testHomeSuccess(): void
     {
         $client = static::createClient();

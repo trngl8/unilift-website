@@ -6,13 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TopicControllerTest extends WebTestCase
 {
-//    public function testAddAnswerToTopicSuccess() : void
-//    {
-//        $this->markTestIncomplete(
-//            'This test has not been implemented yet.'
-//        );
-//    }
-
     /**
      * @dataProvider getUris
      */

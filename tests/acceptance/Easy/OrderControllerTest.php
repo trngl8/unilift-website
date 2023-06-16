@@ -2,11 +2,18 @@
 
 namespace App\Tests\Acceptance\Easy;
 
+use App\Controller\EasyAdmin\OrderCrudController;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class OrderControllerTest extends WebTestCase
 {
+    public function testEntity(): void
+    {
+        $target = new OrderCrudController();
+        $this->assertEquals('App\Entity\Order', $target->getEntityFqcn());
+    }
+
     public function testOrdersSuccess(): void
     {
         $client = static::createClient();

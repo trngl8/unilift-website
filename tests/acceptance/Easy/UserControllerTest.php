@@ -2,11 +2,18 @@
 
 namespace App\Tests\Acceptance\Easy;
 
+use App\Controller\EasyAdmin\UserCrudController;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
+    public function testEntity(): void
+    {
+        $target = new UserCrudController();
+        $this->assertEquals('App\Entity\User', $target->getEntityFqcn());
+    }
+
     public function testPagesSuccess(): void
     {
         $client = static::createClient();
