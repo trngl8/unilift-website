@@ -15,7 +15,7 @@ class OrderProduct
     #[Assert\Email]
     public string $email;
 
-    public string $location = ''; //TODO: validation or default location
+    public ?string $location;
 
     #[Assert\NotBlank]
     public string $description;
