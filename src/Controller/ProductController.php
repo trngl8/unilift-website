@@ -35,10 +35,28 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[Route('/{alias}', name: 'default', methods: ['GET'])]
+    public function default(string $alias, ProductRepository $products): Response
+    {
+        //TODO: set canonical url
+        return $this->forward('App\Controller\ProductController::show', [
+            'alias' => $alias,
+            'products' => $products,
+        ]);
+    }
+
+    #[Route('/{id}/show', name: 'id', methods: ['GET'])]
+    public function id(Product $id): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'item' => $id,
+        ]);
+    }
+
     #[Route('/{alias}/show', name: 'show', methods: ['GET'])]
     public function show(string $alias, ProductRepository $products): Response
     {
-        $product = $products->findOneBy(['id' => $alias]);
+        $product = $products->findOneBy(['slug' => $alias]);
 
         return $this->render('product/show.html.twig', [
             'item' => $product,

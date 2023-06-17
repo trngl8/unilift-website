@@ -23,11 +23,6 @@ class OfferService
         $this->doctrine = $doctrine;
     }
 
-    public function getOrder(Uuid $id): Order
-    {
-        return $this->orders->findOneBy(['uuid' => $id]);
-    }
-
     public function getOrders(string $key, string $identifiers) : array
     {
         return $this->orders->findBy([$key => $identifiers]);

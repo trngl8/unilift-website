@@ -88,22 +88,22 @@ class TwigEventSubscriber implements EventSubscriberInterface
             'low-mobile' => [
                 'title' => 'Підйомники для інвалідів',
                 'route' => 'app_pages_show',
-                'path' => '/pages/low-mobile',
+                'path' => '/product/low-mobile',
             ],
             'platform' => [
                 'title' => 'Підйомні платформи',
                 'route' => 'app_pages_show',
-                'path' => '/pages/platform',
+                'path' => '/product/platform',
             ],
             'escalators' => [
                 'title' => 'Ескалатори',
                 'route' => 'app_pages_show',
-                'path' => '/pages/escalators',
+                'path' => '/product/escalators',
             ],
             'travolators' => [
                 'title' => 'Траволатори',
                 'route' => 'app_pages_show',
-                'path' => '/pages/travolators',
+                'path' => '/product/travolators',
             ],
         ];
 

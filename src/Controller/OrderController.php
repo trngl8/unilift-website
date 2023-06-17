@@ -81,7 +81,12 @@ class OrderController extends AbstractController
     #[Route('/{uuid}/payment', name: 'payment', methods: ['GET'])]
     public function payment(Uuid $uuid) : Response
     {
-        $order = $this->offerService->getOrder($uuid);
+        try {
+            $order = $this->orderService->getOrder($uuid);
+        } catch (\Exception $e) {
+            $this->addFlash('error', sprintf('%s flash.error.not_found', $uuid));
+            return $this->redirectToRoute('app_order_index');
+        }
 
         $formParams = $this->offerService->getFormParams($order, $this->generateUrl('app_order_result', ['uuid' => $order->getUuid()], UrlGeneratorInterface::ABSOLUTE_URL));
 
@@ -92,9 +97,14 @@ class OrderController extends AbstractController
     }
 
     #[Route('/{uuid}/status', name: 'status', methods: ['GET'])]
-    public function status(Uuid $uuid, Request $request) : Response
+    public function status(Uuid $uuid) : Response
     {
-        $order = $this->offerService->getOrder($uuid);
+        try {
+            $order = $this->orderService->getOrder($uuid);
+        } catch (\Exception $e) {
+            $this->addFlash('error', sprintf('%s flash.error.not_found', $uuid));
+            return $this->redirectToRoute('app_order_index');
+        }
 
         if ($order->getStatus() === 'new') {
             return $this->redirectToRoute('app_order_payment', ['uuid' => $uuid]);
@@ -108,7 +118,12 @@ class OrderController extends AbstractController
     #[Route('/{uuid}/success', name: 'success', methods: ['GET'])]
     public function success(Uuid $uuid) : Response
     {
-        $order = $this->orderService->getOrder($uuid);
+        try {
+            $order = $this->orderService->getOrder($uuid);
+        } catch (\Exception $e) {
+            $this->addFlash('error', sprintf('%s flash.error.not_found', $uuid));
+            return $this->redirectToRoute('app_order_index');
+        }
 
         return $this->render('order/success.html.twig', [
             'order' => $order,
@@ -118,7 +133,12 @@ class OrderController extends AbstractController
     #[Route('/{uuid}/result', name: 'result', methods: ['POST'])]
     public function result(Uuid $uuid, Request $request) : Response
     {
-        $order = $this->offerService->getOrder($uuid);
+        try {
+            $order = $this->orderService->getOrder($uuid);
+        } catch (\Exception $e) {
+            $this->addFlash('error', sprintf('%s flash.error.not_found', $uuid));
+            return $this->redirectToRoute('app_order_index');
+        }
 
         $res = $this->offerService->paymentApi($order);
 

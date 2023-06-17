@@ -9,7 +9,3 @@ app_index:
 app_inbox:
   path: /inbox
   controller: App\Controller\InboxController::inbox
-
-app_cart:
-  path: /cart
-  controller: App\Controller\CartController::cart

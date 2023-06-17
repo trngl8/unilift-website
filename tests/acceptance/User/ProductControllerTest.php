@@ -35,6 +35,20 @@ class ProductControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testProductSlug(): void
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByUsername('user@test.com');
+        $client->loginUser($testUser);
+
+        $client->request('GET', '/product/test-product-1');
+
+        $this->assertResponseIsSuccessful();
+    }
+
     public function testProductOrder(): void
     {
         $client = static::createClient();
