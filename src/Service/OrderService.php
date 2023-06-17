@@ -27,6 +27,8 @@ class OrderService
     {
         $order = new Order();
         $order->setDeliveryPhone($orderRequest->phone);
+        $order->setDeliveryName($orderRequest->name);
+        $order->setDeliveryLocation($orderRequest->location);
         $order->setDescription($orderRequest->description);
         $order->setDeliveryEmail($orderRequest->email);
         $order->setAmount($product->getFees());

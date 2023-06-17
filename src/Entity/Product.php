@@ -52,6 +52,9 @@ class Product
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $text = null;
 
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -213,6 +216,18 @@ class Product
     public function setText(?string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

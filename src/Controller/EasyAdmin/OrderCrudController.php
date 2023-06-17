@@ -29,8 +29,11 @@ class OrderCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnIndex()->setRequired(false),
             TextField::new('status'),
+            TextField::new('deliveryName'),
             TextField::new('deliveryPhone'),
             TextField::new('deliveryEmail'),
+            TextField::new('deliveryLocation'),
+            TextField::new('description'),
         ];
     }
 }

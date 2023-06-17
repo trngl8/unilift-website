@@ -50,6 +50,7 @@ class OrderServiceTest extends TestCase
         $orderProduct->email = 'test@test.com';
         $orderProduct->description = 'Product Description';
         $orderProduct->name = 'Order Name';
+        $orderProduct->location = 'Street 21, City';
 
         $entityManager = $this->createMock(EntityManager::class);
         $doctrine = $this->createMock(ManagerRegistry::class);
@@ -67,6 +68,8 @@ class OrderServiceTest extends TestCase
         $this->assertEquals('test@test.com', $result->getDeliveryEmail());
         $this->assertEquals('UAH', $result->getCurrency());
         $this->assertEquals('pay', $result->getAction());
+        $this->assertEquals('Order Name', $result->getDeliveryName());
+        $this->assertEquals('Street 21, City', $result->getDeliveryLocation());
     }
 
     public function testGetOrderException(): void

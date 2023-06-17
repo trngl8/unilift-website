@@ -31,6 +31,7 @@ class ProductCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->setRequired(false)->hideOnForm(),
+            TextField::new('slug')->setRequired(true),
             TextField::new('title'),
             TextareaField::new('description'),
             TextEditorField::new('text')->hideOnIndex(),
