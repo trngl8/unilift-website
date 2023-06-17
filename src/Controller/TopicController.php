@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Button\LinkToRoute;
 use App\Entity\Topic;
 use App\Form\TopicType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,12 +17,6 @@ class TopicController extends AbstractController
     #[Route('/features', name: 'app_features')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        //use some options
-
-        //TODO: set common features
-        //TODO: set features for each module
-        //TODO: set features for current user
-
         $topics = $doctrine->getRepository(Topic::class)->findBy([], ['createdAt' => 'DESC'], 20);
 
         return $this->render('topic/index.html.twig', [
