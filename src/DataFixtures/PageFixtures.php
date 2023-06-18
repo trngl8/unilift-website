@@ -17,7 +17,7 @@ class PageFixtures extends Fixture
         $page->setActive(true);
 
         $contact = new Page();
-        $contact->setTitle('Test');
+        $contact->setTitle('Contact');
         $contact->setDescription('Description');
         $contact->setSlug('contact');
         $contact->setActive(true);

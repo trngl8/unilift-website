@@ -2,7 +2,6 @@
 
 namespace App\Service\Http;
 
-use App\Exception\ExternalServiceHttpFail;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\Response;

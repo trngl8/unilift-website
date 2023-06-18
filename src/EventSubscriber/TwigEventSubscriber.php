@@ -16,15 +16,12 @@ class TwigEventSubscriber implements EventSubscriberInterface
 
     private $security;
 
-    private $messageService;
-
     private $offerService;
 
-    public function __construct(Environment $twig, Security $security, MessageService $messageService, OfferService $offerService)
+    public function __construct(Environment $twig, Security $security, OfferService $offerService)
     {
         $this->twig = $twig;
         $this->security = $security;
-        $this->messageService = $messageService;
         $this->offerService = $offerService;
     }
 
@@ -121,11 +118,11 @@ class TwigEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $countMessages = $this->messageService->findIncomingCount($user->getUserIdentifier());
+        //$countMessages = $this->messageService->findIncomingCount($user->getUserIdentifier());
 
-        if($countMessages > 0) {
-            $this->twig->addGlobal('incoming_unread_count', $countMessages);
-        }
+//        if($countMessages > 0) {
+//            $this->twig->addGlobal('incoming_unread_count', $countMessages);
+//        }
     }
 
     public static function getSubscribedEvents(): array

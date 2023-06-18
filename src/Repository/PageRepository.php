@@ -21,7 +21,7 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
-    public function save(Page $entity, bool $flush = false): void
+    public function add(Page $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
