@@ -69,6 +69,7 @@ security:
 
          - { path: ^/profile, roles: ROLE_USER }
 
+        #TODo: remove unused routes
          - { path: ^/project, roles: ROLE_TEST }
          - { path: ^/features, roles: ROLE_TEST }
          - { path: ^/offer, roles: ROLE_TEST }
