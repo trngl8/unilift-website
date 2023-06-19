@@ -40,6 +40,7 @@ class TwigEventSubscriber implements EventSubscriberInterface
             }
         }
 
+        //TODO: move to the external class
         $topMenu = [
             'index' => [
                 'title' => 'Про нас',

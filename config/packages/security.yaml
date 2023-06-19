@@ -68,9 +68,6 @@ security:
          - { path: ^/easy, roles: ROLE_ADMIN }
 
          - { path: ^/profile, roles: ROLE_USER }
-         - { path: ^/contact, roles: ROLE_USER }
-         - { path: ^/product, roles: ROLE_USER }
-         - { path: ^/index, roles: ROLE_USER }
 
          - { path: ^/project, roles: ROLE_TEST }
          - { path: ^/features, roles: ROLE_TEST }
