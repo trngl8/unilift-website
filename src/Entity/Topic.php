@@ -49,6 +49,9 @@ class Topic
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $publishedAt;
 
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $status = null;
+
     public function getPublishedAt(): ?\DateTime
     {
         return $this->publishedAt;
@@ -157,6 +160,18 @@ class Topic
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Button\LinkToRoute;
-use App\Form\OrderProductType;
 use App\Repository\PageRepository;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Exception\DriverException;
