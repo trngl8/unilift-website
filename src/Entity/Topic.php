@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TopicStatus;
 use App\Repository\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -49,7 +50,7 @@ class Topic
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $publishedAt;
 
-    #[ORM\Column(length: 64, nullable: true)]
+    #[ORM\Column(type: 'string', length: 64, nullable: true, enumType: TopicStatus::class)]
     private ?string $status = null;
 
     public function getPublishedAt(): ?\DateTime
