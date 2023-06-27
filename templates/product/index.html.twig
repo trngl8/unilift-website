@@ -21,9 +21,14 @@
                 <div class="col d-flex align-items-start">
                     <div class="text-dark flex-shrink-0 me-3">
                         {{ item.imageTag|raw }}
+                        <br>
                     </div>
+
                     <div>
                         <h2>{{ item.title }}</h2>
+                        {% if item.filename %}
+                        <img src="{{ asset('upload/' ~ item.filename) }}" width="200" class="img-thumbnail mb-2" alt="{{ item.title }}">
+                        {% endif %}
                         <p>{{ item.description }}</p>
                         <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-secondary">
                             {{ 'action.order'|trans|raw }}
