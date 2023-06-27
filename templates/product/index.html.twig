@@ -27,7 +27,7 @@
                     <div>
                         <h2>{{ item.title }}</h2>
                         {% if item.filename %}
-                        <img src="{{ asset('upload/' ~ item.filename) }}" width="200" class="img-thumbnail mb-2" alt="{{ item.title }}">
+                        <img src="{{ asset('upload/product/' ~ item.filename) }}" width="200" class="img-thumbnail mb-2" alt="{{ item.title }}">
                         {% endif %}
                         <p>{{ item.description }}</p>
                         <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-secondary">
