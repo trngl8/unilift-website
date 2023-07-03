@@ -39,11 +39,12 @@
                 {% if form_service is defined %}
                     {% set order_form = form_service.createOrderForm %}
                 <div id="orderForm">
+
                     <a href="https://t.me/+380736353355"><img src="{{ asset('build/images/telegram-icon.svg') }}" alt="Telegram" width="32" /></a>
                     <a href="viber://chat?number=%2B380736353355"><img src="{{ asset('build/images/viber-icon.svg') }}" alt="Viber" width="32" /></a>
                     <a href="https://wa.me/+380736353355"><img src="{{ asset('build/images/whatsapp-icon.svg') }}" alt="WhatsApp" width="32" /></a>
 
-                    <button type="button" class="btn btn-outline-danger mx-sm-2" data-bs-toggle="modal" data-bs-target="#orderModal">
+                    <button type="button" class="btn btn-outline-danger mx-sm-2 ml-5" data-bs-toggle="modal" data-bs-target="#orderModal">
                         {{ "action.order"|trans|raw }}
                     </button>
 
@@ -135,19 +136,25 @@
     {% endblock %}
 
     {% block features %}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-md-4">#}
-{#                    <img src="{{ asset('build/images/feature-quality.svg') }}"  alt="Якість"/>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <img src="{{ asset('build/images/feature-responsibility.svg') }}"  alt="Відповідальність" />#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <img src="{{ asset('build/images/feature-prices.svg') }}"  alt="Найвигідніші ціни" />#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <p class="fs-4 text-uppercase text-muted">Якість</p>
+                    <img src="{{ asset('build/images/quality-icon.png') }}" alt="Якість"/>
+                    <p class="fs-5 text-muted mx-5 lh-1">Ми використовуємо найкращі матеріали</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="fs-4 text-uppercase text-muted">Відповідальність</p>
+                    <img src="{{ asset('build/images/responsibility-icon.png') }}" alt="Відповідальність" />
+                    <p class="fs-5 text-muted mx-5 lh-1">Наша команда фахівців виконає всі ваші побажання та вимоги в обумовлений термін</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p class="fs-4 text-uppercase text-muted">Найвигідніші ціни</p>
+                    <img src="{{ asset('build/images/prices-icon.png') }}" alt="Найвигідніші ціни" />
+                    <p class="fs-5 text-muted mx-5 lh-1">У нас найвигідніші ціни в Україні</p>
+                </div>
+            </div>
+        </div>
     {% endblock %}
 
     {% block hero %}
