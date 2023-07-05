@@ -40,7 +40,7 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-    public function findMain(array $criteria = [], ?array $orderBy = null, $limit = 3, $offset = 0): iterable
+    public function findMain(array $criteria = [], ?array $orderBy = null, $limit = 100, $offset = 0): iterable
     {
         return parent::findBy($criteria, ['id' => 'ASC'], $limit, $offset);
     }

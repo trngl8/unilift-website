@@ -101,7 +101,7 @@
 
 {% block main_body %}
     {% block carousel %}
-        <div style="background: gray">
+        <div style="background: #2B2E2D">
             <div class="container">
                 <div id="carouselHeader" class="carousel slide">
                     <div class="carousel-indicators">
@@ -159,8 +159,71 @@
         </div>
     {% endblock %}
 
+
+
     {% block hero %}
 
+    {% endblock %}
+
+    {% block quick_form %}
+        <div class="container-fluid" style="background: #2B2E2D">
+            <div class="container p-4">
+                <form action="/send" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text-white fs-5">Для швидкого зв'язку заповніть дані і ми вам зателефонуємо</span>
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" type="text" placeholder="Ім'я" />
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" type="tel" placeholder="Телефон" />
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control btn btn-danger" type="submit" value="Відправити" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {% block products_links %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="row justify-content-evenly">
+                <p class="fs-4 text-center">Ліфтове обладнання, з яким ми працюємо:</p>
+                <div class="col-4">
+                    <ul class="fs-5">
+                        {% for product in products %}
+                            {% if loop.index is even %}
+                                {% if product.slug %}
+                                    <li><a href="{{ path('app_product_show', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
+                                {% else %}
+                                    <li><a href="#" class="text-black">{{ product.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul class="fs-5">
+                        {% for product in products %}
+                            {% if loop.index is odd %}
+                                {% if product.slug %}
+                                    <li><a href="{{ path('app_product_show', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
+                                {% else %}
+                                    <li><a href="#" class="text-black">{{ product.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
     {% endblock %}
 
     {% block main_content %}
