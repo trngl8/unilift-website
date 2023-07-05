@@ -199,7 +199,7 @@
                         {% for product in products %}
                             {% if loop.index is even %}
                                 {% if product.slug %}
-                                    <li><a href="{{ path('app_product_show', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
+                                    <li><a href="{{ path('app_product_default', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
                                 {% else %}
                                     <li><a href="#" class="text-black">{{ product.title }}</a></li>
                                 {% endif %}
@@ -212,7 +212,7 @@
                         {% for product in products %}
                             {% if loop.index is odd %}
                                 {% if product.slug %}
-                                    <li><a href="{{ path('app_product_show', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
+                                    <li><a href="{{ path('app_product_default', {alias:product.slug}) }}" class="text-black">{{ product.title }}</a></li>
                                 {% else %}
                                     <li><a href="#" class="text-black">{{ product.title }}</a></li>
                                 {% endif %}
