@@ -4,7 +4,7 @@
     {{ parent() }}
     <style>
     .content {
-        background-image: url("{{ asset('build/images/bg.svg') }}");
+        {#background-image: url("{{ asset('build/images/bg.svg') }}");#}
         background-repeat: no-repeat;
         background-size: cover;
         /*background-position-x: left;*/
@@ -41,8 +41,8 @@
                 <div id="orderForm">
 
                     <a href="https://t.me/+380736353355"><img src="{{ asset('build/images/telegram-icon.svg') }}" alt="Telegram" width="32" /></a>
-                    <a href="viber://chat?number=%2B380736353355"><img src="{{ asset('build/images/viber-icon.svg') }}" alt="Viber" width="32" /></a>
                     <a href="https://wa.me/+380736353355"><img src="{{ asset('build/images/whatsapp-icon.svg') }}" alt="WhatsApp" width="32" /></a>
+                    <a href="viber://chat?number=%2B380736353355"><img src="{{ asset('build/images/viber-icon.svg') }}" alt="Viber" width="32" /></a>
 
                     <span class="ms-5">
                         <button type="button" class="btn btn-outline-danger mx-sm-2" data-bs-toggle="modal" data-bs-target="#orderModal">
@@ -166,30 +166,13 @@
     {% endblock %}
 
     {% block quick_form %}
-        <div class="container-fluid" style="background: #2B2E2D">
-            <div class="container p-4">
-                <form action="/send" method="post">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span class="text-white fs-5">Для швидкого зв'язку заповніть дані і ми вам зателефонуємо</span>
-                        </div>
-                        <div class="col-auto">
-                            <input class="form-control" type="text" placeholder="Ім'я" />
-                        </div>
-                        <div class="col-auto">
-                            <input class="form-control" type="tel" placeholder="Телефон" />
-                        </div>
-                        <div class="col-auto">
-                            <input class="form-control btn btn-danger" type="submit" value="Відправити" />
-                        </div>
-                    </div>
-                </form>
-            </div>
 
-        </div>
+
+
     {% endblock %}
 
     {% block products_links %}
+    {% if products is defined %}
     <div class="container mt-4">
         <div class="row">
             <div class="row justify-content-evenly">
@@ -224,6 +207,7 @@
 
         </div>
     </div>
+    {% endif %}
     {% endblock %}
 
     {% block main_content %}

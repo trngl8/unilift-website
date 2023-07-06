@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Button\LinkToRoute;
+use App\Form\FastRequestType;
+use App\Model\FastRequest;
 use App\Repository\PageRepository;
 use App\Repository\ProductRepository;
+use App\Service\OrderService;
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +20,8 @@ class DefaultController extends AbstractController
 {
     public function __construct(
         private readonly ProductRepository $productRepository,
-        private readonly PageRepository $pageRepository)
+        private readonly PageRepository $pageRepository,
+        private readonly OrderService $orderService)
     {
     }
 
@@ -60,6 +65,11 @@ class DefaultController extends AbstractController
             $buttons[] = new LinkToRoute('admin', 'button.admin', 'primary');
         }
 
+        $form = $this->createForm(FastRequestType::class, new FastRequest(), [
+            'action' => $this->generateUrl('app_fast_request'),
+            'method' => 'POST',
+        ]);
+
         //TODO: check routes exists
 //        $buttons[] = new LinkToRoute('default', 'button.more', 'primary', 'bi bi-1-circle');
 //        $buttons[] = new LinkToRoute('default_index', 'button.subscribe', 'outline-primary', 'bi bi-2-square');
@@ -67,6 +77,7 @@ class DefaultController extends AbstractController
         return$this->render('default/index.html.twig', [
             'buttons' => $buttons,
             'products' => $products,
+            'fast_form' => $form
         ]);
     }
 
@@ -81,6 +92,29 @@ class DefaultController extends AbstractController
 
         return $this->render('page/show.html.twig', [
             'page' => $page,
+        ]);
+    }
+
+    #[Route('/request', name: 'app_fast_request', methods: ['GET', 'POST'])]
+    public function fastRequest(Request $request): Response
+    {
+        $form = $this->createForm(FastRequestType::class, new FastRequest(), [
+            'action' => $this->generateUrl('app_fast_request'),
+            'method' => 'POST',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order = $this->orderService->fastRequest($form->getData());
+
+            $this->addFlash('success', sprintf('%s flash.success.created', $order->getUuid()));
+
+            return $this->redirectToRoute('app_order_success', ['uuid' => $order->getUuid()]);
+        }
+
+        return $this->render('order/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

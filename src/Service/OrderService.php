@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Model\FastRequest;
 use App\Model\OrderProduct;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
@@ -41,6 +42,31 @@ class OrderService
 
             $this->mailerService->sendOrderCreated($orderRequest);
             $this->mailerService->notifyAdmin($orderRequest);
+
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+            //TODO: escalate to admin
+            throw new \RuntimeException('Order not created');
+        }
+
+        return $order;
+    }
+
+    public function fastRequest(FastRequest $fastRequest): Order
+    {
+        $order = new Order();
+        $order->setDeliveryPhone($fastRequest->phone);
+        $order->setDeliveryName($fastRequest->name);
+        $order->setAmount(100);
+        $order->setCurrency('UAH');
+        $order->setDeliveryLocation('');
+        $order->setDescription('');
+        $order->setDeliveryEmail('');
+
+        try {
+            $entityManager = $this->doctrine->getManager();
+            $entityManager->persist($order);
+            $entityManager->flush();
 
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
