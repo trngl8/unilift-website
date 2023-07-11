@@ -1,5 +1,7 @@
 {% extends 'product/index.html.twig' %} {# deprecated #}
 
+{% block title %}{{ app_name }} {{ item.title }} {% endblock %}
+
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -21,7 +23,7 @@
 
 
     <div class="mb-5 mt-5">
-        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-danger btn-lg">{{ 'action.order'|trans|raw }}</a>
+        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-main btn-lg">{{ 'action.order'|trans|raw }}</a>
     </div>
 
 {% endblock %}

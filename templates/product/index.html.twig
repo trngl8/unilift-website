@@ -30,7 +30,7 @@
                     <img src="{{ asset('upload/product/' ~ item.filename) }}" class="img-thumbnail img-fluid mb-2" alt="{{ item.title }}">
                     {% endif %}
                     <p>{{ item.description }}</p>
-                    <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-secondary">
+                    <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-main">
                         {{ 'action.order'|trans|raw }}
                     </a>
                 </div>
