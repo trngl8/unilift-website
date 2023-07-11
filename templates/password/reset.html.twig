@@ -1,0 +1,31 @@
+{% extends 'default.html.twig' %} {# layout was the old template #}
+
+{% block title %}{{ 'title.new_password'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_login') }}">{{ 'title.login'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_forgot_password_request') }}">{{ 'title.reset_password'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ 'title.new_password'|trans }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block main %}
+    <h1 class="mb-4">{{ 'title.new_password'|trans }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            {{ form_start(resetForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="btn btn-lg btn-outline-primary" type="submit">{{ 'button.set_password'|trans }}</button>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+{% endblock %}

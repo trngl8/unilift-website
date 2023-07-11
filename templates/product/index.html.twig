@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ app_name }} / {{ 'title.products'|trans }} {% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ 'title.products'|trans }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    <h1 class="mb-4">{{ 'title.products'|trans }}</h1>
+
+        {% if products is not defined %}
+            <h4>No products defined</h4>
+        {% else %}
+
+        <div class="row g-4 row-cols-1 row-cols-lg-3">
+            {% for item in products %}
+            <div class="col align-items-start">
+                <div class="text-dark flex-shrink-0 me-3">
+                    {{ item.imageTag|raw }}
+                    <br>
+                </div>
+
+                <div>
+                    <h2>{{ item.title }}</h2>
+                    {% if item.filename %}
+                    <img src="{{ asset('upload/product/' ~ item.filename) }}" class="img-thumbnail img-fluid mb-2" alt="{{ item.title }}">
+                    {% endif %}
+                    <p>{{ item.description }}</p>
+                    <a href="{{ path('app_product_show', { alias : item.id }) }}" class="btn btn-outline-main">
+                        {{ 'action.order'|trans|raw }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+{% endblock %}

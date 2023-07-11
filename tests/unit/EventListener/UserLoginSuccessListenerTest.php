@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Tests\Unit\EventListener;
+
+use App\Entity\User;
+use App\EventListener\UserLoginSuccessListener;
+use App\Repository\ProfileRepository;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
+
+class UserLoginSuccessListenerTest extends TestCase
+{
+    private EventDispatcherInterface $dispatcher;
+
+    public function setUp(): void
+    {
+        $this->dispatcher = new EventDispatcher();
+    }
+
+    /**
+     * @dataProvider dataRedirects
+     */
+    public function testRoleUserRedirects(string $role): void
+    {
+        $repo = $this->createMock(ProfileRepository::class);
+        $authenticator = $this->createMock(AuthenticatorInterface::class);
+        $passport = $this->createMock(Passport::class);
+        $authenticatedToken = $this->createMock(TokenInterface::class);
+        $request = $this->createMock(Request::class);
+        $session = $this->createMock(FlashBagAwareSessionInterface::class);
+        $session->method('getBag')->willReturn($this->createMock(FlashBagInterface::class));
+        $request->method('getSession')->willReturn($session);
+
+        $user = new User();
+        $user->setRoles([$role]);
+        $passport->method('getUser')->willReturn($user);
+
+        $listener = new UserLoginSuccessListener($repo);
+        $this->dispatcher->addListener(LoginSuccessEvent::class, $listener);
+        $event = new LoginSuccessEvent($authenticator, $passport, $authenticatedToken, $request, null, 'main');
+
+        $this->dispatcher->dispatch($event, LoginSuccessEvent::class);
+
+        $this->assertNull($event->getResponse());
+    }
+
+    public function dataRedirects(): iterable
+    {
+        yield 'User' => ['ROLE_USER'];
+        yield 'Admin' => ['ROLE_ADMIN'];
+    }
+}

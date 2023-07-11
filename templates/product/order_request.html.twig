@@ -1,0 +1,49 @@
+{% extends 'product/product_default.html.twig' %}
+
+{# TODO: should esist? #}
+{% block breadcrumbs_previous %}
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ path('app_product_show', {alias:product.id}) }}">{{ product.title }}</a></li>
+{% endblock %}
+{% block breadcrumbs_current %}
+    <li class="breadcrumb-item" aria-current="page"><span class="badge text-bg-success">+</span> <b>{{ 'action.order'|trans|raw }} {{ product.title }}</b></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_product_index') }}">{{ 'title.products'|trans  }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_product_show', {alias:product.id}) }}">{{ product.title }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ 'action.order'|trans|raw }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    {% block product_title %}
+    <div class="container p-0">
+        <div class="row flex-lg-row-reverse align-items-center g-5" >
+            <div class="col-10 col-sm-8 col-lg-4">
+            </div>
+            <div class="col-md-8">
+                <h1 class="mb-4"> {{ product.title }}</h1>
+                <p class="lead"> {{ product.description }}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-lg btn-outline-primary"> {{ 'action.send'|trans|raw }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

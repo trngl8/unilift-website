@@ -1,0 +1,33 @@
+{% extends 'default.html.twig' %} {# layout was the old template #}
+
+{% block title %}{{ 'title.password_reset_email_sent'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_login') }}">{{ 'title.login'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_forgot_password_request') }}">{{ 'title.reset_password'|trans }}</a></li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block main %}
+
+    <h1 class="mb-4">{{ 'title.password_reset_email_sent'|trans }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <p>
+                {{ 'messages.password_reset_email_sent'|trans }}
+                {{ 'email.reset.link_expire'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+            <p>{{ 'messages.dont_receive_or'|trans }} <a href="{{ path('app_forgot_password_request') }}">{{ 'messages.try_again'|trans }}</a>.</p>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'default.html.twig' %}
+
+{% block title %}{{ 'title.check_email'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_register') }}">{{ 'title.register'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_login') }}">{{ 'title.login'|trans }}</a></li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block main %}
+
+    <h1 class="mb-4">{{ 'title.check_email'|trans }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <p>{{ 'messages.verification.email_sent'|trans }}</p>
+            <p>{{ 'messages.verification.check_spam'|trans }}</p>
+            <a href="{{ path('app_home') }}" class="btn btn-outline-primary">{{ 'link.to_home'|trans }}</a>
+        </div>
+    </div>
+
+{% endblock %}

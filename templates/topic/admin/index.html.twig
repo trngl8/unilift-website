@@ -1,0 +1,166 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ 'title.topics'|trans }}{% endblock %}
+
+{% block page_title %}
+    <h1 class="mt-4">{{ 'title.topics'|trans }}</h1>
+{%endblock%}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="{{ path('admin') }}">{{ 'menu.dashboard'|trans }}</a></li>
+        <li class="breadcrumb-item active">{{ 'menu.topics'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block action_panel %}
+    <div class="mb-4">
+        {% if button is defined %}
+            <a href="{{ path('admin_topic_add') }}" class="btn  btn-outline-primary"><i class="bi bi-plus-circle"></i> {{ 'button.add'|trans }}</a>
+            <a href="{{ path('admin_topic_export') }}" class="btn btn-outline-secondary"><i class="bi bi-download"></i> {{ 'button.export'|trans }}</a>
+{#            <a href="{{ path('admin_topic_import') }}" class="btn btn-outline-secondary"><i class="bi bi-download"></i> {{ 'button.import'|trans }}</a>#}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block filters %}
+    {% if filters_expanded is defined %}
+    <div class="accordion mb-4" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="{{ filters_expanded }}" aria-controls="collapseOne">
+                    <i class="bi bi-filter"></i> {{ 'title.filters'|trans }}
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse {% if filters_expanded %}show{% else %}collapse{% endif %}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+{#                    {% form_theme filters 'bootstrap_base_layout.html.twig' %}#}
+                    {{ form_start(filters, {'attr': {'novalidate': 'novalidate'}}) }}
+{#                        {{ form_row(filters.title) }}#}
+                        {{ form_row(filters.type) }}
+                        {{ form_row(filters.apply) }}
+                        {{ form_row(filters.clear) }}
+                        {{ form_row(filters.save) }}
+                    {{ form_end(filters) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    {% if paginator is defined %}
+        {% if paginator|length > 0 %}
+        <table class="table">
+            <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{ 'title'| trans }}</th>
+                <th scope="col">{{ 'type'| trans }}</th>
+                {% if 'priority' in sort|keys %}
+                    {% set prioritySort = sort.priority == 'desc' ?  'asc' : 'desc'  %}
+                    {% set priorityIcon = sort.priority == 'desc' ?  'up' : 'down'  %}
+                    <th scope="col"><a href="{{ path(app.request.attributes.get('_route'), { sort : {'priority' : prioritySort } }) }}">{{ 'priority'| trans }} <i class="bi bi-sort-{{ priorityIcon }}"></i></a></th>
+                {% else %}
+                    <th scope="col"><a href="{{ path(app.request.attributes.get('_route'), { sort : { 'priority' : 'desc' } }) }}">{{ 'priority'| trans }}</a></th>
+                {% endif %}
+                <th scope="col">{{ 'branch'| trans }}</th>
+                {% if 'createdAt' in sort|keys %}
+                    {% set createdSort = sort.createdAt == 'desc' ?  'asc' : 'desc'  %}
+                    {% set createdIcon = sort.createdAt == 'desc' ?  'up' : 'down'  %}
+                    <th scope="col"><a href="{{ path(app.request.attributes.get('_route'), { sort : { 'createdAt' : createdSort } }) }}">{{ 'createdAt'| trans }} <i class="bi bi-sort-{{ createdIcon }}"></i></a></th>
+                {% else %}
+                    <th scope="col"><a href="{{ path(app.request.attributes.get('_route'), { sort : { 'createdAt' : 'desc' } }) }}">{{ 'createdAt'| trans }}</a></th>
+                {% endif %}
+                <th scope="col">{{ 'profile'| trans }}</th>
+                <th scope="col">{{ 'progress'| trans }}</th>
+                <th scope="col">{{ 'actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in paginator %}
+                <tr>
+                    <th scope="row"><a href="{{ path('admin_topic_show', { id: item.id }) }}">{{ item.id }}</a></th>
+                    <td>
+                        {% if  item.closedAt %}
+                            <del>{{ item.title }}</del>
+                        {% else %}
+                            <a href="{{ path('admin_topic_show', { id: item.id }) }}">{{ item.title }}</a>
+                        {% endif%}
+                    </td>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.priority }}</td>
+                    <td><span class="badge rounded-pill bg-success">{{ item.branch }}</span></td>
+                    <td>{{ item.createdAt|date }}</td>
+                    <td>
+                        {% if item.profile  %}
+                            <a href="{{ path('admin_profile_show', {id:item.profile.id}) }}">{{ item.profile }}</a>
+                        {% else %}
+                            <a href="{{ path('admin_topic_edit', {id:item.id})}}"> <i class="bi bi-person-plus"></i></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.startedAt %}
+                            {% if item.startedAt %}
+
+                                    {% if not item.closedAt  %}
+                                    <a href="{{ path('admin_topic_show', {id: item.id}) }}" class="btn btn-sm btn-outline-secondary position-relative">
+                                        {{ item.startedAt|date }}
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                            <span class="visually-hidden">{{ item.startedAt|date }}</span>
+                                        </span>
+                                    </a>
+                                    {% else %}
+                                        <a href="{{ path('admin_topic_show', {id: item.id}) }}" type="button" class="btn btn-sm btn-outline-secondary position-relative">
+                                        {{ item.startedAt|date }}
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                            <span class="visually-hidden">{{ item.startedAt|date }}</span>
+                                        </span>
+
+                                        {{ item.closedAt|date }}
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
+                                            <span class="visually-hidden">{{ item.closedAt|date }}</span>
+                                        </span>
+                                        </a>
+                                    {% endif %}
+
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('admin_topic_show', { id: item.id }) }}" class="btn btn-sm btn-outline-secondary">{{ 'button.show'|trans }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% block paginator %}
+    {% if paginator is defined %}
+    <div class="d-flex">
+        <div>{{ 'total'|trans }} {{ count }} {{ 'items'|trans }}</div>
+        <ul class="pagination m-0 ms-auto">
+            <li class="page-item">
+                <a class="page-link" href="{{ path('admin_topic_index', {page: pages|first}) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for current in pages %}
+            <li class="page-item {% if page == current %}active{% endif%}" {% if page == current %}aria-current="page"{% endif%}>
+                <a class="page-link" href="{{ path('admin_topic_index', {page: current}) }}">{{ current }}</a>
+            </li>
+            {% endfor %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('admin_topic_index', {page: pages|last}) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+{% endblock %}

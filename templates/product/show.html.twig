@@ -1,0 +1,29 @@
+{% extends 'product/index.html.twig' %} {# deprecated #}
+
+{% block title %}{{ app_name }} / {{ item.title }} {% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_index') }}">{{ 'title.home'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_product_index') }}">{{ 'title.products'|trans }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ item.title }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    {{ item.imageTag|raw }}
+    <h1 class="mb-4">{{ item.title }}</h1>
+{#    <p>{{ item.description }}</p>#}
+
+    <div class="col-md-8">
+        <p>{{ item.text|raw }}</p>
+    </div>
+
+
+    <div class="mb-5 mt-5">
+        <a href="{{ path('app_product_order', {id:item.id}) }}" class="btn btn-outline-main btn-lg">{{ 'action.order'|trans|raw }}</a>
+    </div>
+
+{% endblock %}

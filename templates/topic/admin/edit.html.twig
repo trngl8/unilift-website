@@ -1,0 +1,41 @@
+{% extends 'topic/admin/index.html.twig' %}
+
+{% block add_javascript %}
+
+{% endblock %}
+{% block title %}{{ 'title.edit_topic'|trans }}{% endblock %}
+
+{% block page_title %}
+    <h1 class="mt-4">{{ 'title.edit_topic'|trans }}</h1>
+{%endblock%}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="{{ path('admin') }}">{{ 'menu.dashboard'|trans }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('admin_topic_index') }}">{{ 'menu.topics'|trans }}</a></li>
+        <li class="breadcrumb-item active">{{ 'title.add_topic'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-8">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            {{ form_row(form.type) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.branch) }}
+            {{ form_row(form.priority) }}
+            {{ form_row(form.profile) }}
+            {{ form_row(form.publishedAt) }}
+
+            {{ form_rest(form) }}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-lg btn-primary">{{ 'button.submit'|trans }}</button>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

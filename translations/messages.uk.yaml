@@ -1,0 +1,151 @@
+action:
+  yes: Так
+  no: Ні
+  home: На головну
+  order: Залишити&nbsp;заявку
+  save: Зберегти
+  details: Деталі
+  send: Відправити
+app:
+  inbox: Вхідні
+  profile: Профіль
+  orders: Замовлення
+  logout: Вихід
+  invites: Запрошення
+  settings: Налаштування
+  admin: Адміністрування
+  manager: Менеджер
+menu:
+  topics: Задачі
+  projects: Проєкти
+  project: Проєкт
+  profiles: Профілі
+  products: Продукти
+  offers: Пропозиції
+  offer: Пропозиція
+  invites: Запрошення
+  index: Індекс
+  home: Головна
+  features: Цілі
+  dashboard: Панель управління
+  checks: Перевірки
+  orders: Замовлення
+  cards: Картки
+  users: Користувачі
+  market: Market
+  integrations: Інтеграції
+  contacts: Контакти
+
+order:
+  new: Нове замовлення
+  description: Залиште заявку і ми зв'яжемося з вами найближчим часом.
+
+messages:
+  login_fail: "Login failed"
+  security_not_implement: "Security not implemented"
+  run_agree: "Run agree"
+  removing_agree: "Removing agree"
+  no_items: "No items"
+  closing_agree: "Closing agree"
+  change_agree: "Change agree"
+  blank: "This page is blank"
+  authenticated_as: Ви увійшли як
+  licenced_by: Ліцензовано для
+  forgot_password: Забули пароль? #TODO: move to the questions
+  reset_password: Скинути пароль
+  enter_email_to_reset: Введіть адресу електронної пошти і ми надішлемо вам лінк для скидання пароля.
+  send_reset_email: Надіслати лінк
+  password_reset_email_sent: Якщо обліковий запис, відповідний вашій електронній пошті, існує, то лінк для скидання пароля був надісланий на вашу електронну пошту.
+  dont_receive_or: Якщо ви не отримали листа, перевірте папку "спам" або
+  try_again: спробуйте ще раз
+  verification:
+    email_sent: Електронний лист з лінком для підтвердження щойно був надісланий на вашу електронну пошту.
+    check_spam: Якщо ви не отримали листа, перевірте папку "спам".
+    email_success: Ви успішно підтвердили свою електронну пошту.
+    next_actions: Далі ви можете ввійти в систему, використовуючи електронну пошту та пароль, або повернутись на головну сторінку.
+
+error:
+  text_return_homepage: "Return to homepage"
+
+flash:
+  success:
+    removed: Видалено
+    created: Створено
+    updated: Оновлено
+    cloned: Клоновано
+  warning:
+    already_logged_in: You are already logged in
+
+form:
+  label:
+    remember_me: Запам'ятати мене
+    password: Пароль
+    email: Електронна пошта
+    name: Ім'я
+    locale: Мова
+    agree: Погоджуюсь
+    know: Знаю
+    submit: Відправити
+    repeat_password: Повторіть пароль
+    agree_terms: Погоджуюсь з умовами
+    new_password: Новий пароль
+    location: Місцезнаходження
+    phone: Телефон
+    details: Коментар
+  autocomplete:
+    new_password: Новий пароль
+
+# button should have a context (e.g. button: {save: Save, cancel: Cancel})
+button:
+  submit_and_add: Submit and add
+  submit: Відправити
+  show: Показати
+  run: Запустити
+  remove: Видалити
+  red: Червоний
+  blue: Синій
+  ok: OK
+  login: Вхід
+  export: Експорт
+  edit: Редагувати
+  close: Закрити
+  change: Змінити
+  add_option: Додати опцію
+  more: Більше
+  subscribe: Підписка
+  light: Світлий
+  add: Додати
+  register: Реєстрація
+  clone: Клонувати
+  set_password: Встановити пароль
+
+title:
+  home: Головна
+  register: Реєстрація
+  login: Вхід
+  check_email: Перевірте електронну пошту
+  reset_password: Скинути пароль
+  password_reset_email_sent: Лист для скидання пароля надіслано
+  new_password: Новий пароль
+  verification_success: Підтвердження пройшло успішно
+  products: Продукція
+
+link:
+  to_home: На головну
+
+email:
+  reset_request:
+    subject: Запит на скидання пароля
+  confirm:
+    title: Підтвердження електронної пошти
+    subject: Будь ласка, підтвердіть електронну пошту
+    text: Будь ласка, підтвердіть електронну пошту, натиснувши лінк нижче
+    link: Підтвердити електронну пошту
+    link_expire: Цей лінк буде дійсний протягом
+    cheers: Дякуємо
+  reset:
+    greeting: Привіт
+    title: Для скидання пароля натисніть на лінк нижче
+    link_expire: Цей лінк буде дійсний протягом
+    cheers: Дякуємо
+

@@ -1,0 +1,241 @@
+action:
+  yes: Yes
+  no: No
+  home: Home
+  order: Order
+  save: Save
+  details: Details
+  send: Send
+app:
+  inbox: Inbox
+  profile: Profile
+  orders: Orders
+  logout: Logout
+  invites: Invites
+  settings: Settings
+  admin: Admin
+  manager: Manager
+menu:
+  topics: Topics
+  projects: Projects
+  project: Project
+  profiles: Profiles
+  products: Products
+  offers: Offers
+  offer: Offer
+  invites: Invites
+  index: Index
+  home: Home
+  features: Features
+  dashboard: Dashboard
+  checks: Checks
+  orders: Orders
+  cards: Items
+  users: Users
+  market: Market
+  integrations: Integrations
+  contacts: Contacts
+
+messages:
+  login_fail: "Login failed"
+  security_not_implement: "Security not implemented"
+  run_agree: "Run agree"
+  removing_agree: "Removing agree"
+  no_items: "No items"
+  closing_agree: "Closing agree"
+  change_agree: "Change agree"
+  blank: "This page is blank"
+  authenticated_as: You are authenticated as
+  licenced_by: Licenced by
+  forgot_password: Forgot password? #TODO: move to the questions
+  reset_password: Reset password
+  enter_email_to_reset: Enter your email address and we will send you a link to reset your password.
+  send_reset_email: Send reset email
+  password_reset_email_sent: If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+  dont_receive_or: If you don't receive an email please check your spam folder or
+  try_again: try again
+  verification:
+    email_sent: An email was just sent that contains a link that you can use to verify your account.
+    check_spam: If you don't receive an email please check your spam folder.
+    email_success: Your email address has been successfully verified.
+    next_actions: You can now log in the system using your email and password or return to the homepage.
+error:
+  text_return_homepage: "Return to homepage"
+
+flash:
+  success:
+    removed: Removed
+    created: Created
+    updated: Updated
+    cloned: Cloned
+  warning:
+    already_logged_in: You are already logged in
+
+form:
+  label:
+    remember_me: Remember me
+    password: Password
+    email: Email
+    name: Name
+    locale: Locale
+    agree: Agree
+    know: Know
+    submit: Submit
+    repeat_password: Repeat password
+    agree_terms: Agree terms
+    new_password: New password
+  autocomplete:
+    new_password: New password
+
+# button should have a context (e.g. button: {save: Save, cancel: Cancel})
+button:
+  submit_and_add: Submit and add
+  submit: Submit
+  show: Show
+  run: Run
+  remove: Remove
+  red: Red
+  blue: Blue
+  ok: OK
+  login: Login
+  export: Export
+  edit: Edit
+  close: Close
+  change: Change
+  add_option: Add option
+  more: More
+  subscribe: Subscribe
+  light: Light
+  add: Add
+  register: Register
+  clone: Clone
+  set_password: Set password
+link:
+  forgot_password: Forgot your password?
+  to_home: Homepage
+
+email:
+  reset_request:
+    subject: Your password reset request
+  confirm:
+    title: Confirm your email address
+    subject: Please confirm your email
+    text: Please confirm your email address by clicking the link below.
+    link: Confirm email
+    link_expire: Link will expire in
+    cheers: Cheers
+  reset:
+    greeting: Hi!
+    title: To reset your password, please visit the following link
+    link_expire: Link will expire in
+    cheers: Cheers
+
+type: Type
+total: Total
+title:
+  home: Home
+  register: Register
+  verify: Verify
+  reset_password: Reset password
+  password_reset_email_sent: Password reset email sent
+  verification_success: Verification success
+
+  new_password: New password
+  topics: Topics
+  topic_run: Topic run
+  topic_remove: Topic remove
+  topic_close: Topic close
+  topic:
+    show: Topic show
+    run: Topic run
+    add:  Topic add
+  subscribes: Subscribes
+  filters: Filters
+  subscribe: Subscribe
+  show_topic: Show topic
+  show_invite: Show invite
+  show_: Show
+  remove: Remove
+  projects: Projects
+  product: Products
+  cards: Items
+  users: Users
+  project_remove: Project remove
+  project: Project
+  profiles: Profiles
+  profile_remove: Profile remove
+  profile:
+    edit: Profile edit
+  products: Products
+  orders: Orders
+  order:
+    result: Order result
+    payment: Order payment
+  offers: Offers
+  offer: Offer
+  login: Login
+  invites: Invites
+  invite_remove: Invite remove
+  invite_close: Invite close
+  info: Info
+  features: Features
+  edit_topic: Edit topic
+  edit_project: Edit project
+  edit_product: Edit product
+  edit_profile: Edit profile
+  edit_invite: Edit invite
+  edit_check: Edit check
+  edit_card: Edit card
+  contact: Contact
+  checks: Checks
+  check_run: Check run
+  check_remove: Check remove
+  change_agree: Change agree
+  add_topic: Add topic
+  add_project: Add project
+  add_product: Add product
+  add_invite: Add invite
+  add_check: Add check
+  add_card: Add card
+  accept_invite: Accept invite
+  timezone: Timezone
+  text:
+    subscription created: Subscription created
+    must_be_replaced: Must be replaced
+    info: Info
+    default_content: Default content
+
+progress: Progress
+profile:
+  invites: Invites
+priority:
+navbar:
+    logout: Logout
+    activity: Activity
+name: Name
+
+logout: Logout
+login: Login
+locale: Locale
+label:
+  close:
+items: Items
+description: Description
+createdAt: Created at
+closedAt: Closed at
+closeAt: Close at
+
+contacts:
+  phone: Phone
+  info: Info
+  box: Box
+  adress: Adress
+
+brcmbs:
+  topics: Topics
+  topic: Topic
+  home: Home
+
+branch: Branch
+active: Active
+actions: Actions

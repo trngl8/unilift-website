@@ -1,0 +1,213 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app_name }} {{ app.request.pathinfo }} {% endblock %}
+
+{% block favicon %}
+{#<link rel="icon" href="/favicon.ico">#}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon16x16.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
+{% endblock %}
+
+{% block add_stylesheets %}
+    <style>
+    .btn-menu {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #FF010B;
+        --bs-btn-border-color: #FF010B;
+        --bs-btn-hover-color: #FF010B;
+        --bs-btn-hover-bg: #F5F2F2;
+        --bs-btn-hover-border-color: #F5F2F2;
+        --bs-btn-focus-shadow-rgb: 225,83,97;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #b02a37;
+        --bs-btn-active-border-color: #a52834;
+        --bs-btn-active-shadow: inset 0 0px 0px rgba(0,0,0,.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #FF010B;
+        --bs-btn-disabled-border-color: #FF010B;
+        --bs-btn-border-radius: 0;
+    }
+
+    .btn-send {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #FF010B;
+        --bs-btn-border-color:  #FF010B;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #2B2E2D;
+        --bs-btn-hover-border-color: #fff;
+        --bs-btn-focus-shadow-rgb: 225,83,97;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #b02a37;
+        --bs-btn-active-border-color: #a52834;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #FF010B;
+        --bs-btn-disabled-border-color: #FF010B;
+    }
+
+    .btn-outline-main {
+        --bs-btn-color:#FF010B;
+        --bs-btn-border-color:#FF010B;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #FF010B;
+        --bs-btn-hover-border-color:#FF010B;
+        --bs-btn-focus-shadow-rgb: 220,53,69;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #dc3545;
+        --bs-btn-active-border-color: #dc3545;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        --bs-btn-disabled-color: #dc3545;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #dc3545;
+        --bs-gradient: none;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .btn {
+        border-radius: 0;
+    }
+    .form-control {
+        border-radius: 0;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background: #2B2E2D;
+    }
+
+    .before-footer .bottom{
+        background: #2B2E2D;
+        color: #fff;
+        height: 300px;
+    }
+
+    .before-footer .bottom A {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .before-footer .bottom A:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .line1 {
+        background: #FF010B;
+        height: 10px;
+        margin-bottom: 5px
+    }
+
+    .line2 {
+        background: #2B2E2D;
+        height: 5px;
+        margin-bottom: 10px;
+    }
+
+    </style>
+{% endblock %}
+
+{% block modal %}{% endblock %}
+
+{% block body %}
+{% block extended_navbar %}{% endblock %}
+{% block simple_navbar %}{% endblock %}
+{% block top_menu %}
+<div class="container-fluid" style="background: #FF010B">
+    <div class="container">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            {% for menu_item in top_menu %}
+                {% if menu_item.items is defined and menu_item.items|length > 0 %}
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn btn-menu dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ menu_item.title }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for item in menu_item.items %}
+                            <li><a class="dropdown-item" href="{{ item.path }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{{ menu_item.path }}" class="btn btn-menu">{{ menu_item.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+<main style="padding-bottom: 100px">
+    {% block main_body %}
+        {% block main %}
+        {% endblock %}
+    {% endblock %}
+</main>
+{% endblock %}
+
+
+
+{% block footer %}
+    <div class="before-footer">
+        <div class="container text-right">
+            <div class="d-flex justify-content-end mb-2">
+                <img src="{{ asset('build/images/logo.png') }}" alt="" width="200">
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="line1">
+
+            </div>
+
+            <div class="line2">
+
+            </div>
+        </div>
+
+        <div class="bottom text-center pt-2">
+            <div class="fs-3 m-4"><b>+38 073 635 33 55</b></div>
+            <a href="https://t.me/+380736353355"><img src="{{ asset('build/images/telegram-icon.svg') }}" alt="Telegram" width="32" /></a>
+            <a href="https://wa.me/+380736353355"><img src="{{ asset('build/images/whatsapp-icon.svg') }}" alt="WhatsApp" width="32" /></a>
+            <a href="viber://chat?number=%2B380736353355"><img src="{{ asset('build/images/viber-icon.svg') }}" alt="Viber" width="32" /></a>
+            <div class="fs-4 m-4"><a href="mailto:univerlift.ukr@gmail.com">univerlift.ukr@gmail.com</a></div>
+        </div>
+    </div>
+
+    {% if form_service is defined %}
+        {% set fast_form = form_service.createFastForm %}
+        <footer class="footer mt-auto py-3">
+
+            <div class="container sticky">
+                {{ form_start(fast_form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="text-white fs-5">Для швидкого зв'язку заповніть дані і ми вам зателефонуємо</span>
+                    </div>
+                    <div class="col-auto">
+                        {{ form_widget(fast_form.name, {attr:{placeholder:"Ім'я"}}) }}
+                    </div>
+                    <div class="col-auto">
+                        {{ form_widget(fast_form.phone, {attr:{placeholder:"Телефон"}}) }}
+                    </div>
+                    <div class="col-auto">
+                        <input class="form-control btn btn-send" type="submit" value="Відправити" />
+                    </div>
+                </div>
+                {{ form_end(fast_form) }}
+            </div>
+        </footer>
+    {% endif %}
+
+{% endblock %}
+
+{% block additional_info %}
+    <!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Universal Lift{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}">
+    <link rel="alternate icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock stylesheets %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock javascripts %}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2Z9JQ971Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-X2Z9JQ971Z');
+    </script>
+</head>
+
+{% block body %}
+    <body class="d-flex h-100">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div class="text-end">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a href="{{ path('app_profile') }}" class="dropdown-item" type="button">{{ 'app.profile'|trans }}</a></li>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <li><a href="{{ path('admin_settings_index') }}" class="dropdown-item" type="button">{{ 'app.settings'|trans }}</a></li>
+                                {% endif %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="{{ path('app_logout') }}" class="dropdown-item" type="button">{{ 'app.logout'|trans }}</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% block breadcrumbs %}{% endblock %}
+
+            {% block main %}
+            <main class="text-center px-3">
+                <div class="logo mb-5">
+                    <img src="{{ asset('build/images/logo0.png') }}" alt="Universal Lift" width="300" height="300">
+                </div>
+
+                {% block flashes %}
+                {% endblock %}
+                <p class="lead" data-hello-target="output"></p>
+                {% if buttons is defined %}
+                    <p class="lead">
+                    {% for button in buttons %}
+                        <a href="{{ path(button.getRoute) }}" class="btn btn-lg btn-outline-dark fw-bold px-lg-5" title="{{ button.getCaption|trans }}">{{ button.getCaption|trans }}</a>
+                    {% endfor %}
+                    </p>
+                {% endif %}
+            </main>
+            {% endblock %}
+
+
+            <footer class="text-center mt-auto">
+                {% block footer %}
+                <p>{{ 'messages.licenced_by'|trans }} <a href="https://{{ app_domain }}">{{ app_name }}</a>.</p>
+                {% endblock %}
+            </footer>
+
+        </div>
+    </body>
+{% endblock %}
+
+<!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+
+</html>

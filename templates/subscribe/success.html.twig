@@ -1,0 +1,10 @@
+{% extends 'subscribe/index.html.twig' %}
+
+{% block main %}
+    <p>{{ 'title.text.subscription created'|trans }}</p>
+    <p>{{ item.id }}</p>
+    <p>{{ item.email }}</p>
+    <p>{{ item.name }}</p>
+    <a href="{{ path('app_home') }}" class="btn btn-outline-primary">Return to the homepage</a>
+
+{% endblock %}
