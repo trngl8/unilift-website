@@ -176,7 +176,8 @@
         </div>
     </div>
 
-    {% if fast_form is defined %}
+    {% if form_service is defined %}
+        {% set fast_form = form_service.createFastForm %}
         <footer class="footer mt-auto py-3">
 
             <div class="container sticky">
